@@ -1,0 +1,27 @@
+name: StudentRMS CI
+
+on:
+  push:
+    branches: [ master, main ]
+  pull_request:
+    branches: [ master, main ]
+
+jobs:
+  build-and-test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Install GCC
+        run: sudo apt-get update && sudo apt-get install -y gcc make
+
+      - name: Compile and Run Unit Tests (TC-SEARCH-01, TC-SEARCH-02, TC-LIST-01)
+        run: |
+          gcc -Wall -Wextra -std=c11 -Iinclude src/search_list.c tests/test_search_list.c -o test_search_list
+          ./test_search_list
+
+      - name: Compile and Run Performance Benchmark (NFR-001, TC-PERF-01)
+        run: |
+          gcc -Wall -Wextra -std=c11 -Iinclude src/search_list.c tests/test_perf.c -o test_perf
+          ./test_perf
