@@ -20,6 +20,17 @@ jobs:
       - name: Compile All Targets
         run: make all
 
+      - name: Smoke-test first launch and persistence across restart
+        run: |
+          smoke_dir="$(mktemp -d)"
+          (
+            cd "$smoke_dir"
+            printf 'admin\nadmin123\n12\n' | "$GITHUB_WORKSPACE/studentrms" > first_run.log
+            test -s students.dat
+            printf 'admin\nadmin123\n12\n' | "$GITHUB_WORKSPACE/studentrms" > second_run.log
+            grep -q "Loaded 6 student record(s) from students.dat" second_run.log
+          )
+
       - name: Run Existing Integrated Verification Suite
         run: ./test_suite
 
