@@ -25,6 +25,6 @@ test: test_suite test_sprint2 test_perf
 	./test_perf
 
 clean:
-	rm -f test_suite test_search_list test_sprint2 test_perf studentrms *.exe *.log students.dat students.dat.tmp students.dat.bak reports.txt
+	rm -f test_suite test_search_list test_sprint2 test_perf studentrms *.exe
 
 .PHONY: all test clean
