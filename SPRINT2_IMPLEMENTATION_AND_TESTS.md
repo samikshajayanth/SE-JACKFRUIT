@@ -9,6 +9,7 @@ Sprint 2 covers US-11 through US-15: record updates, confirmed deletion, binary 
 - `report.c`: exports a student listing and a CGPA-descending rank list to `reports.txt`.
 - `main.c`: loads `students.dat` at startup, seeds examples only when the storage file is absent, adds update/delete/export menu actions, and attempts to roll back in-memory mutations when persistence fails.
 - `tests/test_sprint2.c`: covers updates, duplicate prevention, invalid marks, deletion, storage round-trip, corrupt storage, and report output.
+- GitHub Actions also smoke-tests first launch and a second launch from the same working directory to confirm that persisted sample records reload.
 
 ## Build and test
 
