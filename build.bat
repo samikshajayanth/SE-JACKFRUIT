@@ -1,44 +1,37 @@
 @echo off
 echo ==========================================================
-echo   Compiling StudentRMS Sprint 1 Product and Test Suites
-echo   Team 4 | Software Engineering (UE24CS341A)
+echo   Building StudentRMS Sprint 2 Product and Test Suites
 echo ==========================================================
 
-echo [1/4] Compiling Integrated Test Suite (test_suite.exe)...
-gcc -Wall -Wextra -std=c11 -Iinclude src/auth.c src/student_mgmt.c src/cgpa.c src/search_list.c tests/test_suite.c -o test_suite.exe
-if %ERRORLEVEL% NEQ 0 (
-    echo [ERROR] Failed to compile test_suite.exe
-    exit /b %ERRORLEVEL%
-)
+echo [1/5] Compiling integrated test suite...
+gcc -Wall -Wextra -std=c11 -Iinclude src/auth.c src/student_mgmt.c src/cgpa.c src/search_list.c src/storage.c src/report.c tests/test_suite.c -o test_suite.exe
+if %ERRORLEVEL% NEQ 0 exit /b %ERRORLEVEL%
 
-echo [2/4] Compiling WP4 Unit Tests (test_search_list.exe)...
+echo [2/5] Compiling search/list unit tests...
 gcc -Wall -Wextra -std=c11 -Iinclude src/search_list.c tests/test_search_list.c -o test_search_list.exe
-if %ERRORLEVEL% NEQ 0 (
-    echo [ERROR] Failed to compile test_search_list.exe
-    exit /b %ERRORLEVEL%
-)
+if %ERRORLEVEL% NEQ 0 exit /b %ERRORLEVEL%
 
-echo [3/4] Compiling NFR-001 Performance Benchmark (test_perf.exe)...
+echo [3/5] Compiling Sprint 2 regression tests...
+gcc -Wall -Wextra -std=c11 -Iinclude src/auth.c src/student_mgmt.c src/cgpa.c src/search_list.c src/storage.c src/report.c tests/test_sprint2.c -o test_sprint2.exe
+if %ERRORLEVEL% NEQ 0 exit /b %ERRORLEVEL%
+
+echo [4/5] Compiling 1,000-record performance benchmark...
 gcc -Wall -Wextra -std=c11 -Iinclude src/search_list.c tests/test_perf.c -o test_perf.exe
-if %ERRORLEVEL% NEQ 0 (
-    echo [ERROR] Failed to compile test_perf.exe
-    exit /b %ERRORLEVEL%
-)
+if %ERRORLEVEL% NEQ 0 exit /b %ERRORLEVEL%
 
-echo [4/4] Compiling Interactive Console Product (studentrms.exe)...
-gcc -Wall -Wextra -std=c11 -Iinclude src/auth.c src/student_mgmt.c src/cgpa.c src/search_list.c src/main.c -o studentrms.exe
-if %ERRORLEVEL% NEQ 0 (
-    echo [ERROR] Failed to compile studentrms.exe
-    exit /b %ERRORLEVEL%
-)
+echo [5/5] Compiling interactive product...
+gcc -Wall -Wextra -std=c11 -Iinclude src/auth.c src/student_mgmt.c src/cgpa.c src/search_list.c src/storage.c src/report.c src/main.c -o studentrms.exe
+if %ERRORLEVEL% NEQ 0 exit /b %ERRORLEVEL%
 
 echo.
 echo ==========================================================
-echo   BUILD SUCCESSFUL! Running Automated Verification Tests
+echo   BUILD SUCCESSFUL. Running test suites...
 echo ==========================================================
-echo.
 test_suite.exe
-echo.
+if %ERRORLEVEL% NEQ 0 exit /b %ERRORLEVEL%
+test_sprint2.exe
+if %ERRORLEVEL% NEQ 0 exit /b %ERRORLEVEL%
 test_perf.exe
+if %ERRORLEVEL% NEQ 0 exit /b %ERRORLEVEL%
 echo.
-echo To launch interactive console application, run: studentrms.exe
+echo Interactive app: studentrms.exe
