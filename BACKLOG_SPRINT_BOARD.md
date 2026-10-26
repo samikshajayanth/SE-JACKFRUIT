@@ -5,7 +5,7 @@ This tracking board mirrors the approved `BACKLOG_AND_SPRINT_PLAN.md` and Sprint
 ## Sprint goals and outcome
 
 - **Sprint 1 (19–23 Oct 2026): 23 story points — DONE.** The Sprint 1 review reports all 23 points completed, working product delivered, and automated CI/headless tests passing.
-- **Sprint 2 (26–30 Oct 2026): 17 story points — TODO.** Update/delete, binary persistence, text exports, UI/code-quality review, regression testing and final documentation.
+- **Sprint 2 (26–30 Oct 2026): 17 story points — IMPLEMENTATION IN REVIEW.** The candidate implementation is on draft PR [#31](https://github.com/samikshajayanth/SE-JACKFRUIT/pull/31); Linux GCC build, existing tests, Sprint 2 regression tests, and performance benchmark passed in CI. Manual console walkthrough, Windows verification, recorded demo, and final freeze sign-off remain.
 
 ## Product backlog / sprint allocation
 
@@ -21,15 +21,15 @@ This tracking board mirrors the approved `BACKLOG_AND_SPRINT_PLAN.md` and Sprint
 | [US-08](https://github.com/samikshajayanth/SE-JACKFRUIT/issues/23) | Automatic Percentage & CGPA Calculation | 3 | Must Have | Sprint 1 | Riddhi Mundada (M4) | **Done** |
 | [US-09](https://github.com/samikshajayanth/SE-JACKFRUIT/issues/24) | Academic Rank List Generation | 2 | Must Have | Sprint 1 | Riddhi Mundada (M4) | **Done** |
 | [US-10](https://github.com/samikshajayanth/SE-JACKFRUIT/issues/25) | GitHub Actions CI Pipeline & Headless Test Harness | 2 | Must Have | Sprint 1 | All team members | **Done** |
-| [US-11](https://github.com/samikshajayanth/SE-JACKFRUIT/issues/26) | Update Student Record Details | 3 | Must Have | Sprint 2 | Saksham Bajpayi (M3) | Todo |
-| [US-12](https://github.com/samikshajayanth/SE-JACKFRUIT/issues/27) | Delete Record with Explicit Confirmation | 3 | Must Have | Sprint 2 | Saksham Bajpayi (M3) | Todo |
-| [US-13](https://github.com/samikshajayanth/SE-JACKFRUIT/issues/28) | Persistent Binary Storage & Crash Resilience | 5 | Must Have | Sprint 2 | Riddhi Mundada (M4) | Todo |
-| [US-14](https://github.com/samikshajayanth/SE-JACKFRUIT/issues/29) | Export Records and Rank Reports to Text File | 3 | Should Have | Sprint 2 | Riddhi Mundada (M4) | Todo |
-| [US-15](https://github.com/samikshajayanth/SE-JACKFRUIT/issues/30) | Console UI Refinement & Code Quality Freeze | 3 | Should Have | Sprint 2 | Samiksha Jayanth (M1) | Todo |
+| [US-11](https://github.com/samikshajayanth/SE-JACKFRUIT/issues/26) | Update Student Record Details | 3 | Must Have | Sprint 2 | Saksham Bajpayi (M3) | In Review |
+| [US-12](https://github.com/samikshajayanth/SE-JACKFRUIT/issues/27) | Delete Record with Explicit Confirmation | 3 | Must Have | Sprint 2 | Saksham Bajpayi (M3) | In Review |
+| [US-13](https://github.com/samikshajayanth/SE-JACKFRUIT/issues/28) | Persistent Binary Storage & Crash Resilience | 5 | Must Have | Sprint 2 | Riddhi Mundada (M4) | In Review |
+| [US-14](https://github.com/samikshajayanth/SE-JACKFRUIT/issues/29) | Export Records and Rank Reports to Text File | 3 | Should Have | Sprint 2 | Riddhi Mundada (M4) | In Review |
+| [US-15](https://github.com/samikshajayanth/SE-JACKFRUIT/issues/30) | Console UI Refinement & Code Quality Freeze | 3 | Should Have | Sprint 2 | Samiksha Jayanth (M1) | In Progress (demo pending) |
 
 ## Board workflow
 
-Move active work through **Todo → In Progress → Review / PR → Done**. Sprint 1 issues have been closed as completed to reflect the team's Sprint 1 review report. Sprint 2 issues remain open for planned work.
+Move active work through **Todo → In Progress → Review / PR → Done**. Sprint 1 issues have been closed as completed to reflect the team's Sprint 1 review report. Sprint 2 implementation is under review; do not mark the sprint complete until manual product verification, the demo recording, and final team sign-off are done.
 
 ## Sprint 1 evidence
 

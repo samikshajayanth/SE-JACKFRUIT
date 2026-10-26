@@ -1,8 +1,8 @@
-name: StudentRMS Sprint 1 CI
+name: StudentRMS Sprint 2 CI
 
 on:
   push:
-    branches: [ main, master ]
+    branches: [ main, master, 'feature/**' ]
   pull_request:
     branches: [ main, master ]
 
@@ -18,13 +18,24 @@ jobs:
         run: sudo apt-get update && sudo apt-get install -y gcc make
 
       - name: Compile All Targets
-        run: |
-          gcc -Wall -Wextra -std=c11 -Iinclude src/auth.c src/student_mgmt.c src/cgpa.c src/search_list.c tests/test_suite.c -o test_suite
-          gcc -Wall -Wextra -std=c11 -Iinclude src/search_list.c tests/test_perf.c -o test_perf
-          gcc -Wall -Wextra -std=c11 -Iinclude src/auth.c src/student_mgmt.c src/cgpa.c src/search_list.c src/main.c -o studentrms
+        run: make all
 
-      - name: Run Integrated Verification Suite (28 Tests)
+      - name: Smoke-test first launch and persistence across restart
+        run: |
+          smoke_dir="$(mktemp -d)"
+          (
+            cd "$smoke_dir"
+            printf 'admin\nadmin123\n12\n' | "$GITHUB_WORKSPACE/studentrms" > first_run.log
+            test -s students.dat
+            printf 'admin\nadmin123\n12\n' | "$GITHUB_WORKSPACE/studentrms" > second_run.log
+            grep -q "Loaded 6 student record(s) from students.dat" second_run.log
+          )
+
+      - name: Run Existing Integrated Verification Suite
         run: ./test_suite
+
+      - name: Run Sprint 2 Regression Suite
+        run: ./test_sprint2
 
       - name: Run NFR-001 Performance Benchmark (1000 Records)
         run: ./test_perf
