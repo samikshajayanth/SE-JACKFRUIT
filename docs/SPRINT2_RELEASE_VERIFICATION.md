@@ -15,7 +15,7 @@ Verification branch: `feature/rohan-sprint2-release-verification`
 
 | Command | Result | Observed outcome |
 |---|---|---|
-| `cmd /c build.bat` | PASS | All five Windows targets compiled; integrated suite 28/28, Sprint 2 suite 18/18, and performance benchmark 0.0500 seconds. |
+| `cmd /c build.bat` | PASS | All five Windows targets compiled; integrated suite 28/28, Sprint 2 suite 18/18, and final performance benchmark 0.0550 seconds. |
 | `.\test_search_list.exe` | PASS | Search/list suite 22/22. |
 | `mingw32-make` | PASS | Targets compiled successfully after the native `make clean` limitation below. |
 | `git diff --check` | PASS | No whitespace errors. |
