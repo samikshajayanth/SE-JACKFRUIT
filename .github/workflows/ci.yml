@@ -25,9 +25,9 @@ jobs:
           smoke_dir="$(mktemp -d)"
           (
             cd "$smoke_dir"
-            printf 'admin\nadmin123\n12\n' | "$GITHUB_WORKSPACE/studentrms" > first_run.log
+            printf 'admin\nadmin123\n12\n' | "$GITHUB_WORKSPACE/studentrms_app" > first_run.log
             test -s students.dat
-            printf 'admin\nadmin123\n12\n' | "$GITHUB_WORKSPACE/studentrms" > second_run.log
+            printf 'admin\nadmin123\n12\n' | "$GITHUB_WORKSPACE/studentrms_app" > second_run.log
             grep -q "Loaded 6 student record(s) from students.dat" second_run.log
           )
 
