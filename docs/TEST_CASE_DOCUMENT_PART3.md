@@ -26,7 +26,7 @@ This document updates the original Sprint 1 cases and adds Sprint 2 regression c
 | TC-AUTH-03 | Authentication / SEC-005 | Logout after successful login | Session state resets; logout is audit logged | Unit + system |
 | TC-AUTH-04 | Authentication / input safety | Pass a null username or password to login API | Credentials rejected safely; no crash | Unit |
 | TC-ADD-01 | Student management / FR-002 | Add valid student with 6 marks in [0,100] | Record inserted once; count increments; percentage and CGPA derived | Unit + system |
-| TC-ADD-02 | Student management / FR-003 | Add a record with an existing roll number | Duplicate error; original array and count unchanged | Unit |
+| TC-ADD-02 | Student management / FR-003 | Add a record with an existing roll number | Duplicate error; original array and count unchanged | Unit |\n| TC-ADD-03 | Student management / robustness | Call the insert API with a null record array | Invalid-field error; no crash or mutation | Unit |
 | TC-VAL-01 | Validation / FR-012 | Submit marks below 0 and above 100 | Record rejected; no mutation | Unit |
 | TC-VAL-02 | Validation | Submit semester outside supported 1–8 range | Record rejected | Unit |
 | TC-SEARCH-01 | Search / FR-004 | Search an existing roll number using original and lower-case forms | Matching student returned case-insensitively | Unit + system |
