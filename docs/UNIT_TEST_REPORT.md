@@ -1,34 +1,43 @@
 # StudentRMS — Unit Test Report (Part 3)
 
-**Report date:** 31 October 2026  
-**Target:** Current `main` baseline, commit `a22ecae583874609c0c37f64715ceafc51a5636f`  
-**Execution status:** Repository CI verified; local rerun pending in this environment.
+**Execution date:** 31 October 2026  
+**Branch / PR:** `part3/testing-docs`, [PR #34](https://github.com/samikshajayanth/SE-JACKFRUIT/pull/34)  
+**Workflow:** [Run 41163252707 — StudentRMS Part 3 Verification](https://github.com/samikshajayanth/SE-JACKFRUIT/actions/runs/41163252707)  
+**Environment:** Ubuntu 24.04.5 LTS, GCC 13.2.0, GNU Make 4.3
 
 ## 1. Scope
 
-Unit-level verification covers authentication/session state, input validation, student CRUD operations, academic calculation, searching/sorting, binary storage, and report generation. The updated test-case catalogue is in `TEST_CASE_DOCUMENT_PART3.md`.
+The unit test execution covers authentication/session state, record creation and validation, academic computation, search and sorting, update/delete operations, binary storage, report generation, and robustness/error inputs. The complete case catalogue is in `TEST_CASE_DOCUMENT_PART3.md`.
 
-## 2. Evidence observed
+## 2. Executed test results
 
-GitHub Actions run [40484833650 — Build & Verify (Linux GCC)](https://github.com/samikshajayanth/SE-JACKFRUIT/actions/runs/40484833650), created 27 October 2026 for `main` commit `a22ecae...`, completed with **success**. Its job steps report success for:
+| Test executable | Assertions passed | Assertions failed | Result |
+|---|---:|---:|---|
+| `test_suite` | 28 | 0 | PASS |
+| `test_search_list` | 22 | 0 | PASS |
+| `test_sprint2` | 18 | 0 | PASS |
+| `test_part3_unit` | 34 | 0 | PASS |
+| **Total** | **102** | **0** | **PASS** |
 
-- Compile All Targets (`make all`)
-- Existing Integrated Verification Suite (`./test_suite`)
-- Sprint 2 Regression Suite (`./test_sprint2`)
-- 1,000-record performance benchmark (`./test_perf`)
+All four functional/robustness test executables completed with exit code 0. The performance benchmark is reported separately: it completed the 1,000-record operations in **0.0389 seconds**, within the 2.0000-second NFR-001 limit (1.95% of the budget).
 
-The CI job summary does not expose the individual assertion count in the report artifact, so this report does not invent one. The current checked-in Sprint 2 suite includes update validation, duplicate-roll protection, deletion/count integrity, save/load round-trip, corrupt-store rejection, and report-content checks.
+## 3. Key areas verified
 
-## 3. Test result summary
+- Authentication: valid/invalid credentials, state transitions, logout, and null credential input.
+- Record management: valid insertion, duplicate roll rejection, invalid marks, invalid semester, and null argument handling.
+- Academic engine: percentage calculation, CGPA cap, and null marks handling.
+- Search and sort: case-insensitive roll/name searches, not-found handling, invalid parameters, valid sort, and invalid sort order.
+- Sprint 2 regression: update/recalculation, duplicate update, invalid update, unknown update, deletion/count integrity, binary save/load, corrupt storage rejection, and report content.
+- Report API robustness: null path, negative count, and inaccessible output location.
 
-| Test group | CI status | Notes |
-|---|---|---|
-| Authentication, add, validation, computation, search, sort | PASS | `test_suite` step succeeded |
-| Sprint 2 update/delete/storage/export regression | PASS | `test_sprint2` step succeeded |
-| Search/list dedicated tests | PASS | Legacy CI workflow ran `test_search_list` successfully on the same `main` commit |
-| Performance | PASS | `test_perf` workflow step succeeded; latest numeric timing is not included in the API job-step summary |
-| Local execution in this report session | NOT RUN | Shell network access could not retrieve the repository clone |
+## 4. CI result
 
-## 4. Limitations and actions
+Both jobs in the Part 3 workflow completed successfully:
+- **Build & Verify (Linux GCC):** compile-all, first-launch/restart smoke test, all four test executables, and the performance benchmark passed.
+- **GCC Line and Branch Coverage:** instrumented compilation, all test executables, gcov report generation, and artifact upload passed.
 
-The latest workflow evidence is dated 27 October 2026 and predates this document update. Run the commands in `TEST_EXECUTION_GUIDE.md` after merging the updated tests to create fresh evidence. Include raw console output and the exact commit SHA in the final submission bundle.
+The full raw console output is available from the workflow run linked above. The gcov evidence is attached as a workflow artifact and summarized in the code/branch coverage reports.
+
+## 5. Limitations
+
+The automated unit suites do not replace interactive system validation. Delete cancellation/confirmation, update through the console UI, mutation persistence across an application restart, manual report-file inspection, audit-log viewing, and Windows/MinGW execution still require evidence from the system-validation checklist.
