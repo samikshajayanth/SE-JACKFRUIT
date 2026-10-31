@@ -13,8 +13,8 @@ static int tests_passed = 0;
 
 #define CHECK(condition, label) do { \
     tests_run++; \
-    if (condition) { tests_passed++; printf("[PASS] %s\\n", label); } \
-    else { printf("[FAIL] %s (line %d)\\n", label, __LINE__); } \
+    if (condition) { tests_passed++; printf("[PASS] %s\n", label); } \
+    else { printf("[FAIL] %s (line %d)\n", label, __LINE__); } \
 } while (0)
 
 static Student make_student(const char* roll, const char* name, float mark) {
@@ -115,7 +115,7 @@ int main(void) {
     CHECK(export_student_reports("part3_report.txt", students, -1) == REPORT_ERR_PARAM,
           "TC-EXPORT-02: negative report count is rejected");
 
-    printf("\\nPart 3 robustness unit summary: %d/%d passed; %d failed.\\n",
+    printf("\nPart 3 robustness unit summary: %d/%d passed; %d failed.\n",
            tests_passed, tests_run, tests_run - tests_passed);
     (void)remove("part3_store.dat");
     (void)remove("part3_report.txt");
