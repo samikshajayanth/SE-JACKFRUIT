@@ -2,19 +2,19 @@ Test Case ID,Feature,Requirement,Level,Automated Test,Expected Result,Execution 
 TC-AUTH-01,Authentication,FR-001,Unit/System,test_suite,Valid admin accepted; session set,CI pass
 TC-AUTH-02,Authentication,FR-001,Unit/System,test_suite,Invalid credentials rejected,CI pass
 TC-AUTH-03,Session,SEC-005,Unit/System,test_suite,Logout clears state; audit event logged,CI pass
-TC-AUTH-04,Input safety,SEC-001,Unit,test_part3_unit,Null credential pointer rejected,Pending fresh run
+TC-AUTH-04,Input safety,SEC-001,Unit,test_part3_unit,Null credential pointer rejected,PASS - Part 3 CI
 TC-ADD-01,Create record,FR-002,Unit/System,test_suite,Valid insert and derived academics,CI pass
-TC-ADD-02,Duplicate validation,FR-003,Unit,test_suite,Duplicate roll rejected,CI pass\nTC-ADD-03,Null record array,Robustness,Unit,test_part3_unit,Invalid array rejected safely,Pending current Part 3 CI
+TC-ADD-02,Duplicate validation,FR-003,Unit,test_suite,Duplicate roll rejected,CI pass\nTC-ADD-03,Null record array,Robustness,Unit,test_part3_unit,Invalid array rejected safely,PASS - Part 3 CI
 TC-VAL-01,Marks validation,FR-012,Unit,test_suite,Marks outside 0..100 rejected,CI pass
-TC-VAL-02,Semester validation,Validation,Unit,test_part3_unit,Semester outside 1..8 rejected,Pending fresh run
+TC-VAL-02,Semester validation,Validation,Unit,test_part3_unit,Semester outside 1..8 rejected,PASS - Part 3 CI
 TC-SEARCH-01,Roll search,FR-004,Unit/System,test_suite,Case-insensitive exact match,CI pass
 TC-SEARCH-02,Name search,FR-004,Unit/System,test_suite,Case-insensitive substring result set,CI pass
-TC-SEARCH-03,Search arguments,Robustness,Unit,test_part3_unit,Invalid pointers rejected,Pending fresh run
+TC-SEARCH-03,Search arguments,Robustness,Unit,test_part3_unit,Invalid pointers rejected,PASS - Part 3 CI
 TC-LIST-01,Sort,FR-007,Unit/System,test_suite,Sort order respected,CI pass
-TC-LIST-02,Sort arguments,Robustness,Unit,test_part3_unit,Invalid sort argument rejected,Pending fresh run
+TC-LIST-02,Sort arguments,Robustness,Unit,test_part3_unit,Invalid sort argument rejected,PASS - Part 3 CI
 TC-CGPA-01,Percentage calculation,FR-008,Unit,test_suite,Arithmetic average,CI pass
-TC-CGPA-02,CGPA range,FR-008,Unit,test_part3_unit,CGPA capped at 10,Pending fresh run
-TC-CGPA-03,Null marks,Robustness,Unit,test_part3_unit,Safe zero result,Pending fresh run
+TC-CGPA-02,CGPA range,FR-008,Unit,test_part3_unit,CGPA capped at 10,PASS - Part 3 CI
+TC-CGPA-03,Null marks,Robustness,Unit,test_part3_unit,Safe zero result,PASS - Part 3 CI
 TC-RANK-01,Rank export,FR-009/FR-011,Integration,test_sprint2,Highest CGPA first with rank labels,CI pass
 TC-PERF-01,Performance,NFR-001,Performance,test_perf,1000-record workload <= 2 seconds,CI pass
 TC-UPD-01,Update,FR-005,Unit/System,test_sprint2,Valid update and recalculation,CI pass
@@ -29,6 +29,6 @@ TC-PERSIST-02,Initial seeding,NFR-002,System,CI smoke,First launch creates seede
 TC-PERSIST-03,Restart restore,NFR-002,System,CI smoke,Second launch reads persisted records,CI pass
 TC-REL-01,Corrupt store,NFR-002,Unit,test_sprint2,Corrupt file rejected,CI pass
 TC-EXPORT-01,Report export,FR-011,Unit/Integration,test_sprint2,Full list and rank list sections emitted,CI pass
-TC-EXPORT-02,Report parameters,Robustness,Unit,test_part3_unit,Null path/negative count rejected,Pending fresh run
-TC-EXPORT-03,Report I/O,Robustness,Unit,test_part3_unit,Invalid destination returns I/O error,Pending fresh run
+TC-EXPORT-02,Report parameters,Robustness,Unit,test_part3_unit,Null path/negative count rejected,PASS - Part 3 CI
+TC-EXPORT-03,Report I/O,Robustness,Unit,test_part3_unit,Invalid destination returns I/O error,PASS - Part 3 CI
 TC-PORT-01,Compiler portability,NFR-005/NFR-006,CI,GitHub Actions,Compiler build and test pass,CI pass on Ubuntu
