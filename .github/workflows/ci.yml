@@ -1,8 +1,8 @@
-name: StudentRMS Sprint 2 CI
+name: StudentRMS Part 3 Verification
 
 on:
   push:
-    branches: [ main, master, 'feature/**' ]
+    branches: [ main, master, 'feature/**', 'part3/**' ]
   pull_request:
     branches: [ main, master ]
 
@@ -34,8 +34,40 @@ jobs:
       - name: Run Existing Integrated Verification Suite
         run: ./test_suite
 
+      - name: Run Search and Listing Suite
+        run: ./test_search_list
+
       - name: Run Sprint 2 Regression Suite
         run: ./test_sprint2
 
+      - name: Run Part 3 Robustness Unit Suite
+        run: ./test_part3_unit
+
       - name: Run NFR-001 Performance Benchmark (1000 Records)
         run: ./test_perf
+
+  coverage:
+    name: GCC Line and Branch Coverage
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Install Build Tools
+        run: sudo apt-get update && sudo apt-get install -y gcc make
+
+      - name: Build and Execute Instrumented Test Suites
+        run: |
+          set -o pipefail
+          make coverage 2>&1 | tee coverage.log
+
+      - name: Upload gcov evidence
+        uses: actions/upload-artifact@v4
+        with:
+          name: studentrms-gcov-${{ github.sha }}
+          path: |
+            coverage.log
+            *.gcov
+            build/coverage
+          if-no-files-found: error
+          retention-days: 30
