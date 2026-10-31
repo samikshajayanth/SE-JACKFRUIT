@@ -19,7 +19,7 @@ The unit test execution covers authentication/session state, record creation and
 | `test_part3_unit` | 34 | 0 | PASS |
 | **Total** | **102** | **0** | **PASS** |
 
-All four functional/robustness test executables completed with exit code 0. The performance benchmark is reported separately: it completed the 1,000-record operations in **0.0389 seconds**, within the 2.0000-second NFR-001 limit (1.95% of the budget).
+All four functional/robustness test executables completed with exit code 0. The performance benchmark is reported separately: it completed the 1,000-record operations in **0.0294 seconds**, within the 2.0000-second NFR-001 limit (1.47% of the budget).
 
 ## 3. Key areas verified
 
