@@ -4,7 +4,7 @@ TC-AUTH-02,Authentication,FR-001,Unit/System,test_suite,Invalid credentials reje
 TC-AUTH-03,Session,SEC-005,Unit/System,test_suite,Logout clears state; audit event logged,CI pass
 TC-AUTH-04,Input safety,SEC-001,Unit,test_part3_unit,Null credential pointer rejected,Pending fresh run
 TC-ADD-01,Create record,FR-002,Unit/System,test_suite,Valid insert and derived academics,CI pass
-TC-ADD-02,Duplicate validation,FR-003,Unit,test_suite,Duplicate roll rejected,CI pass
+TC-ADD-02,Duplicate validation,FR-003,Unit,test_suite,Duplicate roll rejected,CI pass\nTC-ADD-03,Null record array,Robustness,Unit,test_part3_unit,Invalid array rejected safely,Pending current Part 3 CI
 TC-VAL-01,Marks validation,FR-012,Unit,test_suite,Marks outside 0..100 rejected,CI pass
 TC-VAL-02,Semester validation,Validation,Unit,test_part3_unit,Semester outside 1..8 rejected,Pending fresh run
 TC-SEARCH-01,Roll search,FR-004,Unit/System,test_suite,Case-insensitive exact match,CI pass
