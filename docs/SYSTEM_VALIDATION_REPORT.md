@@ -1,41 +1,45 @@
 # StudentRMS — System Validation Report (Part 3)
 
-**Report date:** 31 October 2026  
-**Baseline:** `main` commit `a22ecae583874609c0c37f64715ceafc51a5636f`  
-**System validation status:** Partially verified by CI; interactive acceptance checks remain pending.
+**Execution date:** 31 October 2026  
+**Branch / PR:** `part3/testing-docs`, [PR #34](https://github.com/samikshajayanth/SE-JACKFRUIT/pull/34)  
+**Workflow:** [Run 41163252707 — StudentRMS Part 3 Verification](https://github.com/samikshajayanth/SE-JACKFRUIT/actions/runs/41163252707)  
+**Environment:** Ubuntu 24.04.5 LTS, GCC 13.2.0
 
 ## 1. Objective
 
-Validate the integrated StudentRMS application against the Sprint 1 and Sprint 2 functional requirements, including login, record lifecycle, persistence across restart, and text report export.
+Validate the integrated StudentRMS application against the Sprint 1 and Sprint 2 functional requirements, including authentication, record lifecycle, persistence across restart, and text report export.
 
-## 2. Automated system evidence
+## 2. Automated system and integration evidence
 
-The latest `main` CI run [40484833650](https://github.com/samikshajayanth/SE-JACKFRUIT/actions/runs/40484833650) completed successfully on 27 October 2026. The workflow includes an automated smoke test which:
+Both jobs in the Part 3 workflow completed successfully.
 
-1. Starts `studentrms_app` in a clean temporary directory.
-2. Supplies the administrator login and the exit menu choice.
-3. Verifies `students.dat` is created on first launch.
-4. Starts the application again from the same directory.
-5. Verifies the second launch reports that six student records were loaded from `students.dat`.
+The Build & Verify job passed:
+1. Compilation of all application and test targets.
+2. First-launch smoke test in a clean temporary directory.
+3. Verification that `students.dat` was created.
+4. Second launch from the same working directory.
+5. Verification that six student records were restored from `students.dat`.
+6. Existing integrated, search/list, Sprint 2, and Part 3 robustness test executables.
+7. The 1,000-record performance benchmark (0.0389 seconds; threshold 2.0000 seconds).
 
-The smoke-test step passed. This supports first-launch initialization and basic persistence/reload behavior.
+The Sprint 2 regression executable passed tests for update/recalculation, duplicate updates, invalid updates, unknown records, deletion/count consistency, binary save/load, corrupt-storage rejection, and report output content. This is automated integration evidence; it is not the same as an interactive acceptance demonstration.
 
-## 3. Manual acceptance test results
+## 3. Validation results
 
-| ID | Validation scenario | Expected result | Status | Evidence needed |
-|---|---|---|---|---|
-| SV-01 | First application launch in clean directory | Initial data file seeded and persisted | CI PASS | CI run link |
-| SV-02 | Second launch with same working directory | Six records restored from file | CI PASS | CI run link |
-| SV-03 | Valid/invalid administrator login in interactive session | Correct allow/deny behavior | MANUAL PENDING | Terminal capture |
-| SV-04 | Add record; then try duplicate/invalid values | Valid insert; invalid inputs rejected | MANUAL PENDING | Terminal capture |
-| SV-05 | Update existing record | Updated fields and recalculated academics displayed | MANUAL PENDING | Before/after capture |
-| SV-06 | Delete cancellation using `N` | Record remains present | MANUAL PENDING | Terminal capture |
-| SV-07 | Delete confirmation using `Y` | Record removed | MANUAL PENDING | Terminal capture |
-| SV-08 | Restart after update/delete | Latest persisted state restored | PARTIAL | Current CI tests basic seeded-data reload; perform mutation/restart capture |
-| SV-09 | Export student and rank report | `reports.txt` contains both sections | UNIT/CI PASS | `test_sprint2` step; manual file view pending |
-| SV-10 | View authentication audit log | Timestamped login events visible | MANUAL PENDING | `login.log` capture |
-| SV-11 | Windows/MinGW build and run | Build and smoke test succeed | NOT VERIFIED | Windows terminal capture |
+| ID | Validation scenario | Status | Evidence / remaining action |
+|---|---|---|---|
+| SV-01 | First launch in clean directory creates and persists seed data | **CI PASS** | Build & Verify smoke-test step |
+| SV-02 | Second launch restores six persisted records | **CI PASS** | Build & Verify smoke-test step |
+| SV-03 | Valid and invalid administrator login in interactive session | **UNIT PASS / MANUAL PENDING** | Unit suite passed; capture interactive console evidence |
+| SV-04 | Add a valid record and reject duplicate/invalid values | **UNIT PASS / MANUAL PENDING** | Automated validations passed; capture UI interaction |
+| SV-05 | Update an existing record and recalculate academics | **REGRESSION PASS / MANUAL PENDING** | Sprint 2 suite passed; capture before/after UI output |
+| SV-06 | Cancel delete by choosing `N` | **MANUAL PENDING** | Confirm record remains visible after cancellation |
+| SV-07 | Confirm delete by choosing `Y` | **REGRESSION PASS / MANUAL PENDING** | Core deletion passed; capture interactive confirmation |
+| SV-08 | Restart after update/delete and restore mutated state | **PARTIAL / MANUAL PENDING** | CI checks seeded-data restart; manually verify persisted mutations |
+| SV-09 | Export and inspect student/rank reports | **UNIT PASS / MANUAL PENDING** | Export API and content tests passed; capture actual `reports.txt` |
+| SV-10 | View authentication audit log | **UNIT PASS / MANUAL PENDING** | Login API logs events; capture `login.log` through menu |
+| SV-11 | Windows/MinGW build and run | **NOT VERIFIED** | Run `build.bat` on Windows and capture terminal output |
 
 ## 4. Conclusion
 
-CI confirms that the current application builds, the two automated test suites pass, and first-launch/restart loading works for the seeded dataset. The product is **not yet fully system-validated** for Part 3 because the interactive add/update/delete confirmation paths, mutation persistence across restart, report-file inspection, audit-log viewing, and Windows/MinGW execution require manual evidence. Complete these rows during 2–6 November 2026 and replace each pending status only after attaching evidence.
+Automated build, unit/regression, seed-data restart smoke, and performance checks passed on the PR candidate. The project is **not yet fully system-validated** until the manual console scenarios (especially delete cancellation/confirmation and persistence after mutations) and Windows/MinGW build are demonstrated and recorded. Do not change the manual-pending rows to PASS without attaching those observations.
