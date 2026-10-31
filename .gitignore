@@ -4,4 +4,5 @@
 *.log
 *.dat
 *.tmp
+evidence/interactive/
 .DS_Store
