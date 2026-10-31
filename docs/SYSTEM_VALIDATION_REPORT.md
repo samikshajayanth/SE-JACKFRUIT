@@ -20,7 +20,7 @@ The Build & Verify job passed:
 4. Second launch from the same working directory.
 5. Verification that six student records were restored from `students.dat`.
 6. Existing integrated, search/list, Sprint 2, and Part 3 robustness test executables.
-7. The 1,000-record performance benchmark (0.0389 seconds; threshold 2.0000 seconds).
+7. The 1,000-record performance benchmark (0.0294 seconds; threshold 2.0000 seconds).
 
 The Sprint 2 regression executable passed tests for update/recalculation, duplicate updates, invalid updates, unknown records, deletion/count consistency, binary save/load, corrupt-storage rejection, and report output content. This is automated integration evidence; it is not the same as an interactive acceptance demonstration.
 
