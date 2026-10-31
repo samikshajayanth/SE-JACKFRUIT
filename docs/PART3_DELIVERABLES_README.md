@@ -16,7 +16,7 @@ This folder contains the updated test-case document, execution instructions, tra
 
 Workflow run [41163252707 — StudentRMS Part 3 Verification](https://github.com/samikshajayanth/SE-JACKFRUIT/actions/runs/41163252707) passed the Linux build, application restart smoke test, all four unit/regression executables, performance benchmark, instrumented coverage run, and gcov artifact upload.
 
-The 1,000-record benchmark completed in 0.0389 seconds against the 2.0000-second limit. The gcov artifact from this run contains annotated source coverage files and instrumented build data.
+The 1,000-record benchmark completed in 0.0294 seconds against the 2.0000-second limit. The gcov artifact from this run contains annotated source coverage files and instrumented build data.
 
 ## Remaining work for the assignment window (2–6 November 2026)
 
