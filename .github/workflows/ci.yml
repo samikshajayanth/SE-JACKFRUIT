@@ -46,6 +46,27 @@ jobs:
       - name: Run NFR-001 Performance Benchmark (1000 Records)
         run: ./test_perf
 
+  windows-mingw:
+    name: Build & Verify (Windows MinGW)
+    runs-on: windows-latest
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Set up MSYS2 MinGW-w64
+        uses: msys2/setup-msys2@v2
+        with:
+          msystem: MINGW64
+          update: true
+          install: mingw-w64-x86_64-gcc
+
+      - name: Build and run Windows targets
+        shell: msys2 {0}
+        run: |
+          cmd.exe /c build.bat
+          ./test_search_list.exe
+          ./test_part3_unit.exe
+
   coverage:
     name: GCC Line and Branch Coverage
     runs-on: ubuntu-latest
