@@ -2,7 +2,7 @@ Test Case ID,Feature,Requirement,Level,Automated Test,Expected Result,Execution 
 TC-AUTH-01,Authentication,FR-001,Unit/System,test_suite,Valid admin accepted; session set,CI pass
 TC-AUTH-02,Authentication,FR-001,Unit/System,test_suite,Invalid credentials rejected,CI pass
 TC-AUTH-03,Session,SEC-005,Unit/System,test_suite,Logout clears state; audit event logged,CI pass
-TC-AUTH-04,Input safety,SEC-001,Unit,test_part3_unit,Null credential pointer rejected,PASS - Part 3 CI
+TC-AUTH-04,Input safety,Robustness,Unit,test_part3_unit,Null credential pointer rejected,PASS - Part 3 CI
 TC-ADD-01,Create record,FR-002,Unit/System,test_suite,Valid insert and derived academics,CI pass
 TC-ADD-02,Duplicate validation,FR-003,Unit,test_suite,Duplicate roll rejected,CI pass
 TC-ADD-03,Null record array,Robustness,Unit,test_part3_unit,Invalid array rejected safely,PASS - Part 3 CI
