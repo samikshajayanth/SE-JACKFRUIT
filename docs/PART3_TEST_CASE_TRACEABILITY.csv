@@ -38,8 +38,8 @@ TC-EXPORT-04,Interactive report inspection,FR-011,System,Interactive acceptance,
 TC-PORT-01,Compiler portability,NFR-006,CI,GitHub Actions,Compiler build and test pass,CI pass on Ubuntu and Windows MinGW
 TC-SEC-01,Credential storage,SEC-001,Security,Source review,Credentials are not hard-coded and are read from restricted file,Accepted demo-scope deviation; original SEC-001 wording differs from implementation. See SECURITY_REQUIREMENT_GAP.md
 TC-SEC-02,Input robustness,SEC-003,Security,Negative tests,Oversized/malformed input rejected without crash,Automated tests present; see test reports
-TC-AUDIT-01,Audit-log view,FR-013;SEC-005,System,Interactive menu option 11,Timestamped authentication events displayed,Not separately recorded
-TC-LOGOUT-01,Logout,FR-014,Unit/System,test_suite,Session state cleared after logout,Unit test status to confirm
-TC-LOCKOUT-01,Three-attempt lockout,FR-015,Interactive system,Startup login flow,After three failed attempts application exits without main menu,Not separately recorded
+TC-AUDIT-01,Audit-log view,FR-013;SEC-005,System,Interactive menu option 11,Timestamped authentication events displayed,CI smoke verified — run 43253003166
+TC-LOGOUT-01,Logout,FR-014,Unit/System,test_suite,Session state cleared after logout,CI smoke verified — run 43253003166
+TC-LOCKOUT-01,Three-attempt lockout,FR-015,Interactive system,Startup login flow,After three failed attempts application exits without main menu,CI smoke verified — run 43253003166
 SO-01,Access-control objective,FR-001;SEC-002,Security,Authorization tests,Unauthenticated record operations denied,Automated coverage in test suites
 SO-02,Record integrity and auditability objective,FR-012;SEC-003;SEC-004;SEC-005,Security,Negative/storage/audit tests,Invalid data rejected; file errors handled; timestamped events recorded,Automated tests present; interactive audit-log view not separately recorded
