@@ -1,30 +1,54 @@
 # Sprint 2 Release Verification
 
-Issue: [#32](https://github.com/samikshajayanth/SE-JACKFRUIT/issues/32)
-Verified source commit: `e6b274e12385470335e7a3d7ea4a5f18350b56cc` (`origin/main`)
-Verification branch: `feature/rohan-sprint2-release-verification`
+**Issue:** [#32](https://github.com/samikshajayanth/SE-JACKFRUIT/issues/32)  
+**Final verified source commit:** `14d19bc0aa3d0de0079a738f0cf8bbec935c9486` (`main`)  
+**Verification status:** Automated verification and demonstration completed; final team review and release-freeze sign-off pending.
 
-## Environment
+## 1. Environment
 
+### Native Windows verification
 - Native Windows PowerShell environment.
 - MinGW-w64 GCC 15.2.0 (MSYS2, `x86_64-w64-mingw32`).
 - GNU Make 4.4.1.
-- Runtime files were created in the isolated working directory `evidence/interactive/`; no pre-existing `students.dat` or team working data was used. The first launch seeded the application's built-in sample records.
+- Runtime files were created in the isolated working directory `evidence/interactive/`.
+- No pre-existing `students.dat` or team working data was used. The first launch seeded the application's built-in sample records.
 
-## Automated verification
+### CI environments
+- Linux GCC build and verification through GitHub Actions.
+- Windows MinGW build and verification through GitHub Actions.
+- GCC line and branch coverage through GitHub Actions.
+
+## 2. Automated verification
+
+### Native Windows verification
 
 | Command | Result | Observed outcome |
 |---|---|---|
-| `cmd /c build.bat` | PASS | All five Windows targets compiled; integrated suite 28/28, Sprint 2 suite 18/18, and final performance benchmark 0.0550 seconds. |
+| `cmd /c build.bat` | PASS | All five Windows targets compiled; integrated suite 28/28, Sprint 2 suite 18/18, performance benchmark 0.0550 seconds. |
 | `.\test_search_list.exe` | PASS | Search/list suite 22/22. |
 | `mingw32-make` | PASS | Targets compiled successfully after the native `make clean` limitation below. |
 | `git diff --check` | PASS | No whitespace errors. |
 
-The documented `mingw32-make clean` command was also attempted. It is not portable to this native MinGW shell because the Makefile invokes Unix `rm`; it failed before compilation with `CreateProcess ... rm ... failed`. This does not affect the supported Windows entry point, `build.bat`, which completed successfully. No code change was made for this unrelated build-script portability limitation.
+The documented `mingw32-make clean` command was also attempted. It is not portable to this native MinGW shell because the Makefile invokes Unix `rm`; it failed before compilation with `CreateProcess ... rm ... failed`. This does not affect the supported Windows entry point, `build.bat`, which completed successfully.
 
-## Interactive acceptance matrix
+### GitHub Actions verification
 
-The application was launched from an isolated directory with the supported credentials shown by the existing application (`admin` / `admin123`). The update used a synthetic name and marks; the application also loaded its built-in sample records.
+All three checks passed on final commit `14d19bc0aa3d0de0079a738f0cf8bbec935c9486`.
+
+| Workflow check | Result |
+|---|---|
+| StudentRMS CI | PASS |
+| Build & Verify (Linux GCC) | PASS |
+| Build & Verify (Windows MinGW) | PASS |
+| GCC Line and Branch Coverage | PASS |
+
+**GitHub Actions evidence:**
+- [StudentRMS CI run](https://github.com/samikshajayanth/SE-JACKFRUIT/actions/runs/43163536198)
+- [Sprint 2 Part 3 Verification run](https://github.com/samikshajayanth/SE-JACKFRUIT/actions/runs/43163536379)
+
+## 3. Interactive acceptance matrix
+
+The application was launched from an isolated directory with the supported credentials (`admin` / `admin123`). The update used a synthetic name and marks; the application also loaded its built-in sample records.
 
 | ID | Check | Result | Evidence |
 |---|---|---|---|
@@ -38,8 +62,44 @@ The application was launched from an isolated directory with the supported crede
 | INT-REPORT-01 | Export report | PASS; `reports.txt` was created and readable | `evidence/interactive/reports.txt` |
 | INT-REPORT-02 | Report contents and ranking | PASS; listing and rank sections were present and rank CGPAs were descending | `evidence/interactive/reports.txt` |
 
-## Evidence and limitations
+## 4. Demonstration evidence
+
+A working-product demonstration video was recorded on macOS and attached to GitHub issue #32.
+
+**[View StudentRMS demonstration video](https://github.com/user-attachments/assets/0cf1b03a-2c2c-46a7-88f4-6699646b99cc)**
+
+The demonstration covers:
+- Application launch and authentication.
+- Student record update.
+- Deletion and cancellation.
+- Persistence across application restart.
+- Report generation.
+- Verification results.
+
+The macOS recording demonstrates application functionality. Windows/MinGW portability is independently supported by the native Windows verification and GitHub Actions results.
+
+The reproducible demonstration sequence is also documented in [SPRINT2_DEMO_CHECKLIST.md](SPRINT2_DEMO_CHECKLIST.md).
+
+## 5. Evidence limitations
 
 The raw interactive logs and runtime files are kept locally under `evidence/interactive/` and are ignored or intentionally uncommitted because the seeded application dataset contains team-member identifiers. The report records the observed outcomes without committing those records.
 
-The native Windows/MinGW build was executed successfully. A graphical recording was not produced automatically; the reproducible demonstration sequence is in [SPRINT2_DEMO_CHECKLIST.md](SPRINT2_DEMO_CHECKLIST.md). Team review, release-freeze sign-off, and video upload remain outside this verification run.
+The native Windows `mingw32-make clean` limitation is documented above. The supported Windows build using `build.bat` passed.
+
+## 6. Final release status
+
+| Release requirement | Status |
+|---|---|
+| Sprint 2 implementation | COMPLETE |
+| Native Windows/MinGW verification | COMPLETE |
+| Linux GCC verification | COMPLETE |
+| Windows MinGW CI | COMPLETE |
+| GCC coverage checks | COMPLETE |
+| Interactive acceptance testing | COMPLETE |
+| Restart persistence verification | COMPLETE |
+| Report export verification | COMPLETE |
+| Demo video recorded and attached | COMPLETE |
+| Final team review | PENDING |
+| Release-freeze sign-off | PENDING |
+
+**Conclusion:** Sprint 2 implementation, automated verification, interactive acceptance testing, and demonstration evidence are complete. The release gate remains open only for final team review and release-freeze sign-off.
