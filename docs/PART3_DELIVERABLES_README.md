@@ -22,7 +22,7 @@ This folder indexes the Part 3 test-case document, execution instructions, trace
 ## Remaining review items
 
 1. Final team review and release-freeze sign-off remain pending in GitHub issue #32.
-2. SEC-001 is not met by the current educational implementation because `admin/admin123` is compiled into `src/auth.c`. See [Security Requirement Gap](SECURITY_REQUIREMENT_GAP.md); do not report this requirement as passed.
+2. The project owner accepts the compiled demo credentials for this academic scope. This remains a documented deviation from the original SEC-001 wording, not technical compliance with that wording. See [SEC-001 Demonstration Credential Design Decision](SECURITY_REQUIREMENT_GAP.md).
 3. Interactive invalid-login walkthrough and menu-based audit-log inspection are not separately recorded in the release verification matrix.
 4. Coverage values above are historical measurements tied to their stated workflow/toolchain. Re-run coverage after any source-code change before presenting them as current results.
 
