@@ -17,7 +17,7 @@ The implemented demo behavior differs from that original wording. Record this as
 The accepted demo credential choice does not waive the other security checks:
 
 - SEC-002: record-management operations are inaccessible before successful authentication.
-- SEC-003: user input is length/type validated before use. Interactive text fields now reject empty and overlong values rather than silently truncating them; numeric parsing and all malformed-input paths should continue to be tested.
+- SEC-003: user input is length/type validated before use. Interactive text fields (roll number, name, department, login, and search fields) now reject empty and overlong values rather than silently truncating them. CI run 43254584426 passed Linux GCC, Windows MinGW, and GCC coverage including an overlong-name smoke test. Numeric malformed-input paths should continue to be tested.
 - SEC-004: file I/O failures are handled without corrupting stored records.
 - SEC-005: failed login attempts are timestamped in the local audit log.
 - Passwords or credential material must not be written into logs.
