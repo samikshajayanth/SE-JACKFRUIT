@@ -79,7 +79,7 @@ int main(void) {
     CHECK(add_student_record(NULL, &count, 3, &students[0]) == MGMT_ERR_INVALID_FIELD,
           "TC-ADD-03: null student array is rejected safely");
 
-    CHECK(search_by_roll_no(students, count, "pes1ug24cs001", &result) == SEARCH_SUCCESS,
+    CHECK(search_by_roll_no(students, count, "demo2026cs101", &result) == SEARCH_SUCCESS,
           "TC-SEARCH-01: roll search is case insensitive");
     CHECK(search_by_roll_no(students, count, "UNKNOWN", &result) == SEARCH_NOT_FOUND,
           "TC-SEARCH-01: unknown roll returns not found");
