@@ -6,7 +6,7 @@
  * Assigned Owner: Samiksha Jayanth (PES1UG24CS414) - Member 1 / Team Lead
  * Requirements Traceability:
  *   - FR-001: Administrator login before access
- *   - SEC-001: Separate credential verification (not hardcoded in business logic)
+ *   - SEC-001: Accepted academic-demo credential deviation (compiled demo credential)
  *   - SEC-002: Session gating (block unauthenticated access)
  *   - SEC-005: Audit logging of failed login attempts with timestamp
  *   - UC-01: Administrator Login
