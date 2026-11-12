@@ -74,7 +74,6 @@ static int persist_current_state(void) {
 static int prompt_student_details(Student* s) {
     if (!s) return 0;
     memset(s, 0, sizeof(*s));
-    discard_line(); /* Consume the newline left by the menu/roll-number scanf. */
     if (!read_text_field("Roll Number: ", s->roll_no, sizeof(s->roll_no))) return 0;
     if (!read_text_field("Full Name: ", s->name, sizeof(s->name))) return 0;
     if (!read_text_field("Department: ", s->department, sizeof(s->department))) return 0;
@@ -115,6 +114,7 @@ static void ui_add_student(void) {
     }
     Student s;
     printf("\n--- Add Student Record ---\n");
+    discard_line(); /* Consume the newline left by the menu selection. */
     if (!prompt_student_details(&s)) return;
 
     int result = add_student_record(g_students, &g_count, MAX_SYSTEM_RECORDS, &s);
