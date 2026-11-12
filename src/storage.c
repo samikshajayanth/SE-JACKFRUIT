@@ -7,7 +7,7 @@
 #include "cgpa.h"
 
 #define STORAGE_VERSION 1u
-static const char STORAGE_MAGIC[8] = {'S','T','U','D','R','M','S','\\0'};
+static const char STORAGE_MAGIC[8] = {'S','T','U','D','R','M','S','\0'};
 
 typedef struct {
     char magic[8];
@@ -33,16 +33,16 @@ static int roll_numbers_equal(const char* left, const char* right) {
         if (a >= 'A' && a <= 'Z') a = (unsigned char)(a - 'A' + 'a');
         if (b >= 'A' && b <= 'Z') b = (unsigned char)(b - 'A' + 'a');
         if (a != b) return 0;
-        if (a == '\\0') return 1;
+        if (a == '\0') return 1;
     }
     return 0;
 }
 
 static int persisted_record_is_valid(const Student* s) {
     if (!s) return 0;
-    if (!memchr(s->roll_no, '\\0', sizeof(s->roll_no)) ||
-        !memchr(s->name, '\\0', sizeof(s->name)) ||
-        !memchr(s->department, '\\0', sizeof(s->department))) return 0;
+    if (!memchr(s->roll_no, '\0', sizeof(s->roll_no)) ||
+        !memchr(s->name, '\0', sizeof(s->name)) ||
+        !memchr(s->department, '\0', sizeof(s->department))) return 0;
     return validate_student_fields(s);
 }
 
