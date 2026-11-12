@@ -4,12 +4,12 @@
 
 ## Current repository workflow
 
-1. Start from an up-to-date local clone of \`main\`.
+1. Start from an up-to-date local clone of `main`.
 2. Create a focused feature or documentation branch.
 3. Make one logically scoped change and run the relevant tests.
-4. Inspect \`git status\` and \`git diff --check\`.
+4. Inspect `git status` and `git diff --check`.
 5. Commit with a descriptive message and push the branch to the repository.
-6. Open a pull request against \`main\`, describe the change, list tests actually run, and link related issues.
+6. Open a pull request against `main`, describe the change, list tests actually run, and link related issues.
 7. Wait for required CI checks and review. Merge only after repository-owner/team approval.
 
 ## Historical context
@@ -20,17 +20,17 @@ The original guide described Rohan M's Sprint 1 search/list contribution and a p
 
 Linux/macOS:
 
-\`\`\`bash
+```bash
 make clean
 make all
 make test
 git diff --check
-\`\`\`
+```
 
 Windows/MinGW:
 
-\`\`\`bat
+```bat
 cmd /c build.bat
-\`\`\`
+```
 
 Never state that a test, review, or approval passed unless its output or GitHub status is available.
