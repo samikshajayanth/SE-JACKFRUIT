@@ -26,6 +26,9 @@ test_perf: src/search_list.c tests/test_perf.c
 studentrms_app: $(CORE_SRC) src/main.c
 	$(CC) $(CFLAGS) $^ -o $@
 
+studentrms: studentrms_app
+	cp studentrms_app studentrms
+
 test: test_suite test_search_list test_sprint2 test_part3_unit test_perf
 	./test_suite
 	./test_search_list
@@ -66,6 +69,7 @@ coverage:
 
 clean:
 	rm -f test_suite test_search_list test_sprint2 test_part3_unit test_perf studentrms_app *.exe
+	if [ -f studentrms ]; then rm -f studentrms; fi
 	rm -rf build *.gcov
 
 .PHONY: all test coverage clean

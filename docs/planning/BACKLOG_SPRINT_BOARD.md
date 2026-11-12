@@ -1,11 +1,11 @@
 # StudentRMS — Backlog and Sprint Board
 
-This tracking overview mirrors `BACKLOG_AND_SPRINT_PLAN.md` and the sprint review evidence. The canonical GitHub Issues are linked below. Use the live GitHub Projects board for visual backlog and sprint views once the repository owner links it.
+This tracking overview mirrors [`BACKLOG_AND_SPRINT_PLAN.md`](BACKLOG_AND_SPRINT_PLAN.md) and the sprint review evidence. The canonical GitHub Issues are linked below. Use the live GitHub Projects board for visual backlog and sprint views once the repository owner links it.
 
 ## Sprint goals and outcome
 
 - **Sprint 1 (19–23 Oct 2026): 23 story points — REPORTED COMPLETE.** The Sprint 1 review reports all 23 points completed, a working product, headless tests, and CI checks passing.
-- **Sprint 2 (26–30 Oct 2026): 17 story points — IMPLEMENTATION MERGED; CORE VERIFICATION RECORDED.** PR [#31](https://github.com/samikshajayanth/SE-JACKFRUIT/pull/31) was merged to `main). Independent Windows/MinGW and interactive acceptance results are documented in [`docs/SPRINT2_RELEASE_VERIFICATION.md`](docs/SPRINT2_RELEASE_VERIFICATION.md). Linux automated tests and coverage are green on the latest recorded main run. Repeatable Windows CI, demo video upload, and team sign-off remain open.
+- **Sprint 2 (26–30 Oct 2026): 17 story points — IMPLEMENTATION MERGED; CORE VERIFICATION RECORDED.** PR [#31](https://github.com/samikshajayanth/SE-JACKFRUIT/pull/31) was merged to `main`. Independent Windows/MinGW and interactive acceptance results are documented in [`SPRINT2_RELEASE_VERIFICATION.md`](../SPRINT2_RELEASE_VERIFICATION.md). Linux automated tests and coverage are green on the latest recorded main run. Repeatable Windows CI, demo video upload, and team sign-off remain open.
 
 ## Product backlog / sprint allocation
 
@@ -47,7 +47,7 @@ Use **Todo → In Progress → Review / PR → Done**. Sprint 1 review reports c
 
 ## Sprint 1 evidence
 
-According to `SPRINT1_REVIEW_AND_DEVIATIONS.md`, the review reports 23/23 story points completed, 28 headless automated tests, CI portability checks, and a 1,000-record performance benchmark of 0.047 seconds against the 2.0-second SLA.
+According to [`SPRINT1_REVIEW_AND_DEVIATIONS.md`](../sprints/SPRINT1_REVIEW_AND_DEVIATIONS.md), the review reports 23/23 story points completed, 28 headless automated tests, CI portability checks, and a 1,000-record performance benchmark of 0.047 seconds against the 2.0-second SLA.
 
 ## Live GitHub Projects setup
 

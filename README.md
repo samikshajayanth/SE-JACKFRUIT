@@ -163,7 +163,12 @@ flowchart TD
 include/                 Public module headers and Student data model
 src/                     Production C11 implementation
 tests/                   Automated test programs
-docs/                    Test guides, reports, traceability, and demo evidence
+docs/planning/           Backlog, sprint allocation, and submission guides
+docs/sprints/            Sprint reviews and implementation notes
+docs/demos/              Reproducible demonstration scripts
+docs/deliverables/       Assignment PDFs and final deliverables
+docs/reports/            Technical and viva documentation
+docs/                    Test guides, reports, traceability, and release evidence
 .github/workflows/       Linux, Windows, and coverage CI workflows
 Makefile                 Linux/macOS build, test, coverage, and clean targets
 build.bat                Windows/MinGW build script
@@ -183,9 +188,9 @@ build.bat                Windows/MinGW build script
 - [`docs/TEST_EXECUTION_GUIDE.md`](docs/TEST_EXECUTION_GUIDE.md) — build, test, coverage, and manual validation commands
 - [`docs/PART3_DELIVERABLES_README.md`](docs/PART3_DELIVERABLES_README.md) — test reports and Part 3 evidence index
 - [`docs/SPRINT2_DEMO_CHECKLIST.md`](docs/SPRINT2_DEMO_CHECKLIST.md) — reproducible interactive demo flow
-- [`BACKLOG_SPRINT_BOARD.md`](BACKLOG_SPRINT_BOARD.md) — requirements, ownership, and sprint status
-- [`EXPLANATION_GUIDE.md`](EXPLANATION_GUIDE.md) — technical and viva explanation for the search/list module
-- [`PR_SUBMISSION_GUIDE.md`](PR_SUBMISSION_GUIDE.md) — contribution and submission guidance
+- [`BACKLOG_SPRINT_BOARD.md`](docs/planning/BACKLOG_SPRINT_BOARD.md) — requirements, ownership, and sprint status
+- [`EXPLANATION_GUIDE.md`](docs/reports/EXPLANATION_GUIDE.md) — technical and viva explanation for the search/list module
+- [`PR_SUBMISSION_GUIDE.md`](docs/planning/PR_SUBMISSION_GUIDE.md) — contribution and submission guidance
 
 ## License
 

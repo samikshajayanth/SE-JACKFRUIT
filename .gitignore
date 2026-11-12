@@ -1,8 +1,29 @@
-﻿*.exe
+# Compiled binaries
+*.exe
 *.o
 *.obj
+/studentrms_app
+/studentrms
+/test_suite
+/test_search_list
+/test_sprint2
+/test_part3_unit
+/test_perf
+/StudentRMS/studentrms_app
+
+# Build and coverage output
+/build/
+*.gcov
+*.gcda
+*.gcno
+
+# Runtime data and temporary files
 *.log
 *.dat
 *.tmp
+*.bak
+reports.txt
 evidence/interactive/
+
+# Operating-system files
 .DS_Store

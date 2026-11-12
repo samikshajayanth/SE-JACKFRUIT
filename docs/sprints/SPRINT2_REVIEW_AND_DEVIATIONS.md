@@ -26,7 +26,7 @@ The Sprint 2 suite covers successful updates, academic recalculation, duplicate 
 
 ## Windows and interactive release evidence
 
-The independent verification record in [`docs/SPRINT2_RELEASE_VERIFICATION.md`](docs/SPRINT2_RELEASE_VERIFICATION.md) documents a native Windows PowerShell environment with MinGW-w64 GCC 15.2.0 (MSYS2), GNU Make 4.4.1, and the following observed PASS results:
+The independent verification record in [`SPRINT2_RELEASE_VERIFICATION.md`](../SPRINT2_RELEASE_VERIFICATION.md) documents a native Windows PowerShell environment with MinGW-w64 GCC 15.2.0 (MSYS2), GNU Make 4.4.1, and the following observed PASS results:
 
 - `cmd /c build.bat`: all Windows targets compiled; integrated 28/28, Sprint 2 18/18, performance benchmark 0.0550 seconds.
 - Search/list suite: 22/22.

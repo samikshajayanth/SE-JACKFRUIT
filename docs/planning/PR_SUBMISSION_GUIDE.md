@@ -33,9 +33,9 @@ Copy-Item -Path "$src	ests" -Destination "$dst" -Recurse -Force
 Copy-Item -Path "$src\.github" -Destination "$dst" -Recurse -Force
 Copy-Item -Path "$srcuild.bat" -Destination "$dst" -Force
 Copy-Item -Path "$src\Makefile" -Destination "$dst" -Force
-Copy-Item -Path "$src\BACKLOG_AND_SPRINT_PLAN.md" -Destination "$dst" -Force
-Copy-Item -Path "$src\SPRINT1_REVIEW_AND_DEVIATIONS.md" -Destination "$dst" -Force
-Copy-Item -Path "$src\DEMO_SCRIPT_SPRINT1.md" -Destination "$dst" -Force
+Copy-Item -Path "$src\BACKLOG_AND_SPRINT_PLAN.md" -Destination "$dst\docs\planning" -Force
+Copy-Item -Path "$src\SPRINT1_REVIEW_AND_DEVIATIONS.md" -Destination "$dst\docs\sprints" -Force
+Copy-Item -Path "$src\DEMO_SCRIPT_SPRINT1.md" -Destination "$dst\docs\demos" -Force
 ```
 
 ---
