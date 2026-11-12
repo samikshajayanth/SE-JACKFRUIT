@@ -1,31 +1,33 @@
-# Security Requirement Gap — SEC-001
+# SEC-001 — Demonstration Credential Design Decision
 
-## Current implementation
+## Agreed project scope
 
-The current demonstration build defines the administrator username and password in `src/auth.c`:
+The project owner has confirmed that the current demonstration credentials are acceptable for this academic console application. The repository documents the demo login as `admin / admin123`; the credentials are compiled into the current authentication implementation.
 
-- Username: `admin`
-- Password: `admin123`
+This is an accepted demonstration-scope decision. It is not a claim that the application is suitable for production or that plaintext/embedded credentials are a recommended security practice.
 
-The README explicitly identifies these as hard-coded educational/demo credentials and warns against production reuse.
+## Relationship to the submitted SRS
 
-## SRS requirement
+The submitted SRS SEC-001 currently says that the administrator password must not be embedded in source code and must be read from a separate restricted-access credentials file.
 
-SEC-001 in the submitted SRS requires that administrator credentials are not embedded in source code and are read from a separate, restricted-access credentials file.
+The implemented demo behavior differs from that original wording. Record this as an explicit scope deviation/accepted exception for the academic demonstration. Do not mark the original SEC-001 wording as technically satisfied unless the SRS is formally revised and the change is accepted by the course/team evaluator.
 
-## Compliance status
+## Controls that remain in scope
 
-**NOT COMPLIANT.** The current source does not read a separate credentials file. Authentication and session gating tests do not demonstrate compliance with credential-at-rest requirements. This is a documented gap, not a passed security control.
+The accepted demo credential choice does not waive the other security checks:
 
-## Required remediation before claiming SEC-001 compliance
+- SEC-002: record-management operations are inaccessible before successful authentication.
+- SEC-003: user input is length/type validated before use.
+- SEC-004: file I/O failures are handled without corrupting stored records.
+- SEC-005: failed login attempts are timestamped in the local audit log.
+- Passwords or credential material must not be written into logs.
 
-1. Replace compile-time credential constants with a credentials provider that reads from a configurable local file.
-2. Fail closed if the file is missing, unreadable, malformed, or has unsafe permissions; do not silently fall back to embedded credentials.
-3. Document the file format, location, access-control expectations, and setup procedure without committing real credentials.
-4. Update authentication tests to cover valid credentials, invalid credentials, missing file, unreadable file, malformed file, and permission errors.
-5. Ensure logs never include passwords or credential-file contents.
-6. Re-run Linux and Windows CI and update the SRS, SAD security architecture, test plan, and traceability matrix together.
+## Operational limitation
 
-## Disposition for this submission
+Use the demonstration credentials only with synthetic academic test data. Do not reuse them for personal, institutional, or production accounts.
 
-Until that implementation and its tests exist, retain SEC-001 as an open requirement gap. The demo credential is for local academic demonstration only and must not be used for real accounts or production data.
+## Submission disposition
+
+**Decision:** retain the current demo credentials; no credentials-file implementation is planned for this project scope.
+
+**Documentation action still required:** update the SRS/SAD security wording or include this deviation in the final report, and obtain any required team/course approval. The existing SRS text is otherwise inconsistent with the implemented design.
