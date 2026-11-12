@@ -55,9 +55,9 @@ This document updates the original Sprint 1 cases and adds Sprint 2 regression c
 | TC-EXPORT-02 | Report | Pass a null path or invalid count | Parameter error returned | Unit |
 | TC-EXPORT-03 | Report | Export to inaccessible/nonexistent directory | I/O error returned | Unit |
 | TC-PORT-01 | Portability / NFR-005, NFR-006 | Build and run with supported compiler/CI target | No compiler errors; tests pass | CI |
-| TC-AUDIT-01 | Audit-log view / FR-013, SEC-005 | After login, select menu option 11 | Timestamped authentication events are displayed | Interactive pending |
-| TC-LOGOUT-01 | Logout / FR-014 | Select menu option 12 after login | Session state is cleared and process exits | Unit logout covered; interactive evidence not separately recorded |
-| TC-LOCKOUT-01 | Login lockout / FR-015 | Enter invalid credentials three times at startup | Application exits without displaying the main menu | Interactive pending |
+| TC-AUDIT-01 | Audit-log view / FR-013, SEC-005 | After login, select menu option 11 | Timestamped authentication events are displayed | CI smoke verified — run 43253003166 |
+| TC-LOGOUT-01 | Logout / FR-014 | Select menu option 12 after login | Session state is cleared and process exits | CI smoke verified — run 43253003166 |
+| TC-LOCKOUT-01 | Login lockout / FR-015 | Enter invalid credentials three times at startup | Application exits without displaying the main menu | CI smoke verified — run 43253003166 |
 
 ## 4. Traceability and status conventions
 
