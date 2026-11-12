@@ -11,8 +11,7 @@ This file records corrections identified during the repository/document audit. I
 ## Deliverable 2 — Requirements package
 
 - Correct the Member 4 SRN to `PES1UG24CS372` wherever it appears.
-- Reconcile SEC-001 wording with the actual implementation. The current authentication source embeds the demonstration credentials; it does not read credentials from a separate restricted-access file. See [SECURITY_REQUIREMENT_GAP.md](SECURITY_REQUIREMENT_GAP.md).
-- Retain the implementation limitation in the SRS and test traceability unless a credentials-file implementation is completed and tested.
+- The project owner accepts the compiled demo credentials for this academic scope. Record this as a deviation from the original SEC-001 wording and revise the final SRS/report accordingly; do not describe the original separate-file requirement as technically satisfied. See [SECURITY_REQUIREMENT_GAP.md](SECURITY_REQUIREMENT_GAP.md).
 
 ## Final documentation — SRS, SAD, STP
 
