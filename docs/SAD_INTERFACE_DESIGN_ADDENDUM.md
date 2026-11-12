@@ -54,3 +54,69 @@ The current authentication implementation uses compile-time demonstration creden
 | FR-011 | Report | Export tests and report inspection |
 | NFR-001 | Search/list | 1,000-record performance benchmark |
 | NFR-006 | Build/CI | Linux GCC and Windows MinGW workflows |
+
+
+## Architecture details for previously empty SAD sections
+
+### 3.1 Goals and constraints
+
+**Goals:** Separate console interaction from business rules and persistence; validate student fields before mutation; keep academic calculations reusable; preserve records across restart and reject corrupt stores; support GCC/Linux and MinGW/Windows.
+
+**Constraints:** C11 console application; no network service or web UI; local file-based persistence; maximum 1,000 student records; six subject marks per student; semester range 1–8; one administrator role; demonstration-only credential configuration.
+
+### 3.2 Stakeholders and concerns
+
+| Stakeholder | Main concern | Design response |
+|---|---|---|
+| Department academic office / administrator | Correct, quick record operations | Menu-driven CRUD, search, sorting, CGPA and rank reports |
+| Student-record data owner | Avoid accidental loss or corruption | Validation, checked storage results, version/checksum validation and safe replacement |
+| Developers / maintainers | Clear module boundaries and testability | Public headers, separate C modules, status codes and headless tests |
+| QA / course evaluator | Verifiable and repeatable evidence | Test IDs, traceability CSV, Linux/Windows CI and release verification |
+
+### 3.4 Component descriptions
+
+- Console application (src/main.c): loads or initializes storage, authenticates the administrator, renders the 12-option menu, collects bounded input, calls module interfaces and reports outcomes.
+- Authentication (src/auth.c): maintains process-local session state, checks the approved demonstration credential, logs authentication events with timestamps to login.log, and exposes login/logout/session functions.
+- Student management (src/student_mgmt.c): validates mandatory fields, semester and marks; checks unique roll numbers; and performs add/update/delete operations.
+- Academic computation (src/cgpa.c): computes percentage and CGPA from six subject marks.
+- Search/list (src/search_list.c): performs case-insensitive roll/name search, selected in-place sorting and console display.
+- Storage (src/storage.c): serializes records to the local versioned binary store, validates metadata/checksum on load and returns distinct missing/corrupt/invalid/capacity/I/O statuses.
+- Reporting (src/report.c): writes student listing and CGPA-descending rank output to a text file.
+
+### 3.7 Risks and mitigations
+
+| Risk | Effect | Mitigation / limitation |
+|---|---|---|
+| Interrupted or failed file write | Incomplete or lost records | Versioned/checksummed storage and safe replacement logic; test failure paths |
+| Corrupt/incompatible data file | Invalid records may be loaded | Validate metadata/checksum and fail safely |
+| Invalid/oversized console input | Incorrect fields or memory corruption | Bounded input formats and field/range validation |
+| Compiler/platform differences | Build/runtime mismatch | Linux GCC and Windows MinGW CI; keep build.bat aligned with CI |
+| Demo credential embedded | Not suitable for real accounts or production | Accepted academic-demo-only deviation; use synthetic data only |
+| Incomplete test evidence | Evaluator cannot reproduce claims | Link tests to CI/manual evidence and leave unexecuted scenarios pending |
+
+### 3.8 Traceability to requirements
+
+| Requirement | Component | Design element | Verification evidence |
+|---|---|---|---|
+| FR-001, FR-014, FR-015; SEC-002 | Authentication + console | Login/logout/session functions and three-attempt startup loop | Unit authentication tests; interactive lockout/menu-gating test still to record |
+| FR-002, FR-003, FR-005, FR-006, FR-012 | Student management + console | CRUD and validation APIs; update/delete handlers | Integrated/Sprint 2 suites; interactive update/delete evidence |
+| FR-004, FR-007 | Search/list | Roll/name search and sort functions | Search/list suite |
+| FR-008, FR-009 | CGPA + search/list + report | Percentage/CGPA and rank ordering | CGPA and rank tests |
+| FR-010; NFR-002; SEC-004 | Storage | Load/save and format/checksum validation | Storage regression, corruption and restart tests |
+| FR-011 | Reporting | Report export function | Report tests and interactive report inspection |
+| FR-013; SEC-005 | Console + authentication | Audit-log menu handler and event logger | Automated audit-event tests; interactive menu-view test still to record |
+| SO-01 | Authentication + console | Session checks before record-management handlers | Authorization tests |
+| SO-02 | Validation + storage + authentication | Field validation, safe file handling and timestamped logs | Input, storage and audit tests |
+
+### 4.3 API / interface design — key contracts
+
+The application is a single-process C program; interfaces are C function calls, not HTTP endpoints. Header declarations are authoritative.
+
+- Authentication: auth_login(username, password) returns AUTH_SUCCESS, AUTH_ERR_CREDENTIALS or AUTH_ERR_LOCKED; auth_logout() clears the process session; auth_is_authenticated() reports session state.
+- Student management: add_student_record(...), update_student_record(...) and delete_student_record(...) return declared MGMT_* status values. Callers report success only for MGMT_SUCCESS.
+- Search: search_by_roll_no(...) returns SEARCH_SUCCESS, SEARCH_NOT_FOUND or SEARCH_ERR_PARAM; search_by_name(...) returns match count or -1.
+- Sorting: sort_students(..., SortOrder) mutates the supplied array in place and returns 0 on success or -1 for invalid parameters.
+- Storage: load_students(...) and save_students(...) return declared STORAGE_* status codes.
+- Reporting: export_student_reports(...) returns REPORT_SUCCESS, REPORT_ERR_IO or REPORT_ERR_PARAM.
+
+No public network API is exposed. Storage/report paths are local filesystem paths passed to module functions by the console controller.
