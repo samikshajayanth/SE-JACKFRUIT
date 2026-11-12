@@ -131,7 +131,7 @@ static void test_search_list_module(void) {
     /* TC-LIST-01: Sort by Name Ascending */
     s_res = sort_students(sort_arr, 4, SORT_BY_NAME_ASC);
     TEST_ASSERT(s_res == 0, "TC-LIST-01: sort_students NAME_ASC succeeded");
-    TEST_ASSERT(strcmp(sort_arr[0].name, "Dev Iyer") == 0, "First alphabetically is Amara Shah");
+    TEST_ASSERT(strcmp(sort_arr[0].name, "Amara Shah") == 0, "First alphabetically is Amara Shah");
 }
 
 int main(void) {
