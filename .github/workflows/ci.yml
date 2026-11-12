@@ -63,7 +63,9 @@ jobs:
       - name: Build and run Windows targets
         shell: msys2 {0}
         run: |
+          cd "$(cygpath -u "$GITHUB_WORKSPACE")"
           cmd.exe /c build.bat
+          gcc -Wall -Wextra -std=c11 -Iinclude src/auth.c src/student_mgmt.c src/cgpa.c src/search_list.c src/storage.c src/report.c tests/test_part3_unit.c -o test_part3_unit.exe
           ./test_search_list.exe
           ./test_part3_unit.exe
 
