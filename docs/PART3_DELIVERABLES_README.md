@@ -4,13 +4,13 @@ This folder indexes the Part 3 test-case document, execution instructions, trace
 
 | Deliverable | File | Current status |
 |---|---|---|
-| Updated test case document | \`TEST_CASE_DOCUMENT_PART3.md\` | Updated for Sprint 1 and Sprint 2, including robustness assertions |
-| Test case traceability | \`PART3_TEST_CASE_TRACEABILITY.csv\` | CSV structure repaired; includes interactive acceptance evidence and explicit SEC-001 gap |
-| Unit test report | \`UNIT_TEST_REPORT.md\` | Historical Part 3 run: 102/102 assertions passed |
-| System validation report | \`SYSTEM_VALIDATION_REPORT.md\` | Reconciled with later Windows and interactive acceptance evidence |
-| Code coverage report | \`CODE_COVERAGE_REPORT.md\` | Historical measurement: 77.67% line coverage (240/309 executable lines) |
-| Branch coverage report | \`BRANCH_COVERAGE_REPORT.md\` | Historical measurement: 62.70% branch-outcome coverage (200/319 outcomes) |
-| Test execution guide | \`TEST_EXECUTION_GUIDE.md\` | Linux, Windows, coverage, and manual validation instructions |
+| Updated test case document | `TEST_CASE_DOCUMENT_PART3.md` | Updated for Sprint 1 and Sprint 2, including robustness assertions |
+| Test case traceability | `PART3_TEST_CASE_TRACEABILITY.csv` | CSV structure repaired; includes interactive acceptance evidence and explicit SEC-001 gap |
+| Unit test report | `UNIT_TEST_REPORT.md` | Historical Part 3 run: 102/102 assertions passed |
+| System validation report | `SYSTEM_VALIDATION_REPORT.md` | Reconciled with later Windows and interactive acceptance evidence |
+| Code coverage report | `CODE_COVERAGE_REPORT.md` | Historical measurement: 77.67% line coverage (240/309 executable lines) |
+| Branch coverage report | `BRANCH_COVERAGE_REPORT.md` | Historical measurement: 62.70% branch-outcome coverage (200/319 outcomes) |
+| Test execution guide | `TEST_EXECUTION_GUIDE.md` | Linux, Windows, coverage, and manual validation instructions |
 
 ## Verification evidence
 
@@ -22,7 +22,7 @@ This folder indexes the Part 3 test-case document, execution instructions, trace
 ## Remaining review items
 
 1. Final team review and release-freeze sign-off remain pending in GitHub issue #32.
-2. SEC-001 is not met by the current educational implementation because \`admin/admin123\` is compiled into \`src/auth.c\`. See [Security Requirement Gap](SECURITY_REQUIREMENT_GAP.md); do not report this requirement as passed.
+2. SEC-001 is not met by the current educational implementation because `admin/admin123` is compiled into `src/auth.c`. See [Security Requirement Gap](SECURITY_REQUIREMENT_GAP.md); do not report this requirement as passed.
 3. Interactive invalid-login walkthrough and menu-based audit-log inspection are not separately recorded in the release verification matrix.
 4. Coverage values above are historical measurements tied to their stated workflow/toolchain. Re-run coverage after any source-code change before presenting them as current results.
 
