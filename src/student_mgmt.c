@@ -40,7 +40,7 @@ int validate_student_fields(const Student* s) {
 }
 
 int find_student_by_roll(const Student* students, int count, const char* roll_no) {
-    if (!students || count <= 0 || !roll_no || !*roll_no) return -1;
+    if (!students || count <= 0 || count > MAX_RECORDS || !roll_no || !*roll_no) return -1;
     for (int i = 0; i < count; i++) {
         if (roll_numbers_equal(students[i].roll_no, roll_no)) return i;
     }
@@ -48,7 +48,7 @@ int find_student_by_roll(const Student* students, int count, const char* roll_no
 }
 
 int add_student_record(Student* students, int* count, int max_capacity, const Student* new_s) {
-    if (!students || !count || !new_s || max_capacity < 0)
+    if (!students || !count || !new_s || max_capacity < 0 || max_capacity > MAX_RECORDS)
         return MGMT_ERR_INVALID_FIELD;
     if (*count < 0 || *count > max_capacity || *count >= max_capacity)
         return MGMT_ERR_CAPACITY;
