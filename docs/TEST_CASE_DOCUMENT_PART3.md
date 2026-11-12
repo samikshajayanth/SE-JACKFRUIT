@@ -80,4 +80,4 @@ make test
 The `make test` target runs all five suites, including `test_part3_unit`. The coverage build is described in `TEST_EXECUTION_GUIDE.md`. Run the suite in a disposable working directory because Sprint 2 tests create and remove temporary data files.
 
 
-| TC-INPUT-LENGTH-01 | Input validation / SEC-003 | Enter an overlong full name in Add Student | Input rejected; no record inserted and no truncated value accepted | CI smoke pending |
+| TC-INPUT-LENGTH-01 | Input validation / SEC-003 | Enter an overlong full name in Add Student | Input rejected; no record inserted and no truncated value accepted | Pending latest CI verification after correcting menu-input newline handling |
