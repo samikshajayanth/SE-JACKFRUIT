@@ -120,8 +120,9 @@ int load_students(const char* path, Student* students, int* count, int capacity)
 
     /* A crash between renaming the old store to .bak and promoting .tmp
        leaves no primary file. A checksum failure can also use a valid backup. */
-    if (read_students_file(backup_path, backup_records, &backup_count, capacity) != STORAGE_SUCCESS)
-        return primary_result;
+    int backup_result = read_students_file(backup_path, backup_records, &backup_count, capacity);
+    if (backup_result == STORAGE_NOT_FOUND) return primary_result;
+    if (backup_result != STORAGE_SUCCESS) return backup_result;
 
     if (primary_result == STORAGE_NOT_FOUND) {
         if (rename(backup_path, path) != 0) return STORAGE_ERR_IO;
