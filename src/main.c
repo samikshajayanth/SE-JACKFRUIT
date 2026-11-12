@@ -21,6 +21,32 @@ static void discard_line(void) {
     while ((ch = getchar()) != '\n' && ch != EOF) { }
 }
 
+/* Read a complete bounded field; reject rather than silently truncate. */
+static int read_text_field(const char* prompt, char* destination, size_t capacity) {
+    size_t length;
+    int ch;
+    if (!prompt || !destination || capacity < 2) return 0;
+    printf("%s", prompt);
+    if (!fgets(destination, (int)capacity, stdin)) return 0;
+    length = strcspn(destination, "\r\n");
+    if (length == capacity - 1 && destination[length] == '\0') {
+        ch = getchar();
+        if (ch != '\n' && ch != EOF) {
+            discard_line();
+            destination[0] = '\0';
+            printf("[ERROR] Input is too long (maximum %zu characters).\n", capacity - 1);
+            return 0;
+        }
+    } else {
+        destination[length] = '\0';
+    }
+    if (length == 0) {
+        printf("[ERROR] This field cannot be empty.\n");
+        return 0;
+    }
+    return 1;
+}
+
 static void seed_initial_records(void) {
     Student team_records[] = {
         {"PES1UG24CS414", "Samiksha Jayanth", "CSE", 5, {88, 92, 90, 89, 94, 91}, 0, 0},
@@ -48,22 +74,9 @@ static int persist_current_state(void) {
 static int prompt_student_details(Student* s) {
     if (!s) return 0;
     memset(s, 0, sizeof(*s));
-    printf("Roll Number: ");
-    if (scanf("%15s", s->roll_no) != 1) {
-        discard_line();
-        return 0;
-    }
-    discard_line();
-
-    printf("Full Name: ");
-    if (!fgets(s->name, sizeof(s->name), stdin)) return 0;
-    s->name[strcspn(s->name, "\r\n")] = '\0';
-
-    printf("Department: ");
-    if (scanf("%19s", s->department) != 1) {
-        discard_line();
-        return 0;
-    }
+    if (!read_text_field("Roll Number: ", s->roll_no, sizeof(s->roll_no))) return 0;
+    if (!read_text_field("Full Name: ", s->name, sizeof(s->name))) return 0;
+    if (!read_text_field("Department: ", s->department, sizeof(s->department))) return 0;
     printf("Semester (1-8): ");
     if (scanf("%d", &s->semester) != 1) {
         discard_line();
@@ -302,10 +315,17 @@ int main(void) {
     char username[64], password[64];
     int attempts = 0;
     while (attempts < 3) {
-        printf("\n[ADMINISTRATOR LOGIN REQUIRED]\nUsername: ");
-        if (scanf("%63s", username) != 1) return 1;
-        printf("Password: ");
-        if (scanf("%63s", password) != 1) return 1;
+        printf("\n[ADMINISTRATOR LOGIN REQUIRED]\n");
+        if (!read_text_field("Username: ", username, sizeof(username))) {
+            attempts++;
+            printf("[ERROR] Invalid username input. Attempt %d of 3.\n", attempts);
+            continue;
+        }
+        if (!read_text_field("Password: ", password, sizeof(password))) {
+            attempts++;
+            printf("[ERROR] Invalid password input. Attempt %d of 3.\n", attempts);
+            continue;
+        }
         if (auth_login(username, password) == AUTH_SUCCESS) {
             printf("\n>>> Authentication successful. Welcome, Administrator. <<<\n");
             break;
