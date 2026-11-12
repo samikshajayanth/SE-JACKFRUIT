@@ -28,7 +28,7 @@ The later Sprint 2 release verification records successful native Windows/MinGW 
 | SV-07 | Confirm deletion by choosing Y | **PASS — INTERACTIVE** | Release verification, INT-DEL-02 |
 | SV-08 | Restart after update/delete and restore mutated state | **PASS — INTERACTIVE** | Release verification, INT-PERSIST-01 |
 | SV-09 | Export and inspect student/rank reports | **PASS — INTERACTIVE** | Release verification, INT-REPORT-01 and INT-REPORT-02 |
-| SV-10 | View authentication audit log through the menu | **NOT RECORDED** | Automated audit-event checks exist; separate interactive log inspection is not recorded |
+| SV-10 | View authentication audit log through the menu | **PASS — CI SMOKE** | Added CI smoke flow selects menu option 11 and checks timestamped login/logout events in login.log; also checks the password is absent from the log |
 | SV-11 | Windows/MinGW build and test execution | **PASS** | Native Windows verification and GitHub Actions Windows MinGW job |
 
 ## 4. Cross-platform and performance summary
@@ -50,4 +50,4 @@ The current educational build uses demonstration credentials compiled into `src/
 
 ## 6. Conclusion
 
-Automated build, unit/regression, robustness, performance, seed-data restart, native Windows/MinGW, interactive update/delete, mutation persistence, and report-export checks have documented passing evidence. Interactive invalid-login walkthrough and menu-based audit-log inspection are not separately recorded. The demo credential choice is an accepted academic-scope deviation from the original SEC-001 wording; other security requirements remain subject to verification. Final team review and release-freeze sign-off remain pending in GitHub issue #32.
+Automated build, unit/regression, robustness, performance, seed-data restart, native Windows/MinGW, interactive update/delete, mutation persistence, and report-export checks have documented passing evidence. Interactive invalid-login walkthrough is not separately recorded; the three-attempt lockout and audit-log menu flows are now exercised by CI smoke checks. The demo credential choice is an accepted academic-scope deviation from the original SEC-001 wording; other security requirements remain subject to verification. Final team review and release-freeze sign-off remain pending in GitHub issue #32.
