@@ -20,12 +20,12 @@ The declarations in the corresponding `include/*.h` headers are authoritative. T
 
 | Header | Interface group | Caller-facing contract |
 |---|---|---|
-| `include/auth.h` | `auth_login`, `auth_logout`, `auth_is_authenticated`, `log_auth_event` | Authenticate, end session, query session state, and record audit events |
-| `include/student_mgmt.h` | Student CRUD and validation functions | Create, update, delete, and validate student records |
-| `include/cgpa.h` | Percentage and CGPA functions | Compute derived academic values from subject marks |
-| `include/search_list.h` | Search, list, and sorting functions | Find records and produce selected ordering |
-| `include/storage.h` | Load/save functions | Read and persist the local student data store |
-| `include/report.h` | Report generation/export functions | Write student and rank-list output to a text file |
+| `include/auth.h` | `int auth_login(const char *username, const char *password)`, `void auth_logout(void)`, `int auth_is_authenticated(void)`, `void log_auth_event(const char *username, const char *status)` | Authenticate, end session, query session state, and record audit events |
+| `include/student_mgmt.h` | `validate_marks`, `validate_student_fields`, `find_student_by_roll`, `add_student_record`, `update_student_record`, `delete_student_record` | Validate fields/marks and create, locate, update, or delete records; return the declared `MGMT_*` status codes |
+| `include/cgpa.h` | `float compute_percentage(const float marks[NUM_SUBJECTS])`, `float compute_cgpa(float percentage)`, `void update_student_academics(Student *s)` | Compute percentage and CGPA from the six subject marks |
+| `include/search_list.h` | `search_by_roll_no`, `search_by_name`, `sort_students`, `display_student_card`, `display_student_table` | Case-insensitive search, in-place sort by `SortOrder`, and console display; status values are `SEARCH_SUCCESS`, `SEARCH_NOT_FOUND`, and `SEARCH_ERR_PARAM` |
+| `include/storage.h` | `int load_students(const char *path, Student *students, int *count, int capacity)`, `int save_students(const char *path, const Student *students, int count)` | Load/save the local binary store; statuses are `STORAGE_SUCCESS`, `STORAGE_NOT_FOUND`, `STORAGE_ERR_IO`, `STORAGE_ERR_CORRUPT`, `STORAGE_ERR_PARAM`, and `STORAGE_ERR_CAPACITY` |
+| `include/report.h` | `int export_student_reports(const char *path, const Student *students, int count)` | Write student listing and CGPA rank report; statuses are `REPORT_SUCCESS`, `REPORT_ERR_IO`, and `REPORT_ERR_PARAM` |
 | `include/student.h` | Student data model | Shared record representation used by modules |
 
 ## Error handling and data contracts
@@ -38,9 +38,9 @@ The declarations in the corresponding `include/*.h` headers are authoritative. T
 - Destructive deletion requires explicit confirmation in the console workflow.
 - Derived percentage and CGPA values are computed from marks and should not be accepted as independent user-entered values.
 
-## Security architecture limitation
+## Security architecture and accepted demonstration decision
 
-The current authentication implementation uses compile-time demo credentials. This does not satisfy the SRS SEC-001 requirement for a separate restricted-access credentials file. The current design must be described as a demonstration-only authentication mechanism until that requirement is implemented. See `SECURITY_REQUIREMENT_GAP.md`.
+The current authentication implementation uses compile-time demonstration credentials (`admin` / `admin123`). The project owner has accepted this for the academic demonstration; it is a documented deviation from the original SEC-001 wording, not production-grade credential handling. The remaining controls—pre-login access gating, input validation, safe file handling, and timestamped audit logging—remain in scope. See `SECURITY_REQUIREMENT_GAP.md`.
 
 ## Traceability
 
