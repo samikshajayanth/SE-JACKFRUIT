@@ -102,17 +102,17 @@ int main(void) {
     CHECK(near(loaded[0].percentage, students[0].percentage, 0.01f),
           "TC-PERSIST-01: derived academic fields remain consistent");
     CHECK(find_student_by_roll(students, count, "demo2026cs001") == 0,
-          "TC-ROLL-01: CRUD lookup is case insensitive");
+          "TC-ROLL-04: CRUD lookup is case insensitive");
 
     CHECK(rename("test_students.dat", "test_students.dat.bak") == 0,
-          "TC-PERSIST-02: simulate interruption after primary-to-backup rename");
+          "TC-PERSIST-06: simulate interruption after primary-to-backup rename");
     loaded_count = -1;
     CHECK(load_students("test_students.dat", loaded, &loaded_count, MAX_RECORDS) == STORAGE_SUCCESS &&
           loaded_count == count && strcmp(loaded[0].roll_no, students[0].roll_no) == 0,
-          "TC-PERSIST-02: missing primary is restored from valid backup");
+          "TC-PERSIST-06: missing primary is restored from valid backup");
 
     CHECK(save_students("test_students.dat", students, count) == STORAGE_SUCCESS,
-          "TC-PERSIST-03: save after recovery succeeds");
+          "TC-PERSIST-06: save after recovery succeeds");
     CHECK(rename("test_students.dat", "test_students.dat.bak") == 0,
           "TC-REL-02: prepare valid backup for corrupt-primary recovery");
     FILE* damaged = fopen("test_students.dat", "wb");
