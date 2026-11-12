@@ -68,7 +68,7 @@ int main(void) {
     CHECK(near(students[0].percentage, 500.0f / 6.0f, 0.01f), "TC-UPD-01: percentage recalculated");
 
     candidate = students[0];
-    (void)snprintf(candidate.roll_no, sizeof(candidate.roll_no), "%s", "DEMO2026CS002");
+    (void)snprintf(candidate.roll_no, sizeof(candidate.roll_no), "%s", "demo2026cs002");
     CHECK(update_student_record(students, count, "DEMO2026CS001", &candidate) == MGMT_ERR_DUPLICATE,
           "TC-UPD-02: duplicate roll rejected");
     CHECK(strcmp(students[0].roll_no, "DEMO2026CS001") == 0,
