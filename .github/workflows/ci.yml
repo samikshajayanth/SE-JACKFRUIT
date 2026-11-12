@@ -63,11 +63,42 @@ jobs:
       - name: Build and run Windows targets
         shell: msys2 {0}
         run: |
-          cd "$(cygpath -u "$GITHUB_WORKSPACE")"
-          cmd.exe /c build.bat
-          gcc -Wall -Wextra -std=c11 -Iinclude src/auth.c src/student_mgmt.c src/cgpa.c src/search_list.c src/storage.c src/report.c tests/test_part3_unit.c -o test_part3_unit.exe
+          set -e
+
+          CORE="src/auth.c src/student_mgmt.c src/cgpa.c src/search_list.c src/storage.c src/report.c"
+
+          echo "Building integrated test suite..."
+          gcc -Wall -Wextra -std=c11 -Iinclude $CORE tests/test_suite.c -o test_suite.exe
+
+          echo "Building search/list tests..."
+          gcc -Wall -Wextra -std=c11 -Iinclude src/search_list.c tests/test_search_list.c -o test_search_list.exe
+
+          echo "Building Sprint 2 tests..."
+          gcc -Wall -Wextra -std=c11 -Iinclude $CORE tests/test_sprint2.c -o test_sprint2.exe
+
+          echo "Building Part 3 tests..."
+          gcc -Wall -Wextra -std=c11 -Iinclude $CORE tests/test_part3_unit.c -o test_part3_unit.exe
+
+          echo "Building performance benchmark..."
+          gcc -Wall -Wextra -std=c11 -Iinclude src/search_list.c tests/test_perf.c -o test_perf.exe
+
+          echo "Building interactive application..."
+          gcc -Wall -Wextra -std=c11 -Iinclude $CORE src/main.c -o studentrms.exe
+
+          echo "Running integrated tests..."
+          ./test_suite.exe
+
+          echo "Running search/list tests..."
           ./test_search_list.exe
+
+          echo "Running Sprint 2 tests..."
+          ./test_sprint2.exe
+
+          echo "Running Part 3 tests..."
           ./test_part3_unit.exe
+
+          echo "Running performance benchmark..."
+          ./test_perf.exe
 
   coverage:
     name: GCC Line and Branch Coverage
