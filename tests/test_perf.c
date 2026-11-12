@@ -31,7 +31,7 @@ int main() {
     printf("============================================================\n");
     printf("  StudentRMS - NFR-001 Performance Benchmark (TC-PERF-01)   \n");
     printf("  Benchmark Target: 1000 records search & sort <= 2.0s      \n");
-    printf("  Owner: Mira M (DEMO2026CS381)                            \n");
+    printf("  Benchmark data: 1000 synthetic student records                            \n");
     printf("============================================================\n\n");
 
     printf("Generating %d synthetic student records...\n", BENCHMARK_COUNT);
