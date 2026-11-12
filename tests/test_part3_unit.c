@@ -70,8 +70,12 @@ int main(void) {
           "TC-ADD-01: a valid student record can be inserted");
     CHECK(count == 1, "TC-ADD-01: record count increments once");
     CHECK(students[0].percentage == 80.0f, "TC-CGPA-01: percentage is derived from marks");
+    candidate = students[0];
+    (void)snprintf(candidate.roll_no, sizeof(candidate.roll_no), "%s", "demo2026cs101");
+    CHECK(add_student_record(students, &count, 3, &candidate) == MGMT_ERR_DUPLICATE,
+          "TC-ADD-02: duplicate roll number is rejected case insensitively");
     CHECK(add_student_record(students, &count, 3, &students[0]) == MGMT_ERR_DUPLICATE,
-          "TC-ADD-02: duplicate roll number is rejected");
+          "TC-ADD-02: exact duplicate roll number is rejected");
     CHECK(add_student_record(NULL, &count, 3, &students[0]) == MGMT_ERR_INVALID_FIELD,
           "TC-ADD-03: null student array is rejected safely");
 
