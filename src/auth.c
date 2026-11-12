@@ -6,7 +6,7 @@
 
 static int g_authenticated = 0;
 
-/* Simple credential verification adhering to SEC-001 */
+/* Academic demonstration credential verification; see accepted SEC-001 deviation. */
 #define DEFAULT_ADMIN_USER "admin"
 #define DEFAULT_ADMIN_PASS "admin123"
 #define LOG_FILE_PATH      "login.log"
