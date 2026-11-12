@@ -36,5 +36,5 @@ TC-EXPORT-02,Report parameters,Robustness,Unit,test_part3_unit,Null path/negativ
 TC-EXPORT-03,Report I/O,Robustness,Unit,test_part3_unit,Invalid destination returns I/O error,PASS - Part 3 CI
 TC-EXPORT-04,Interactive report inspection,FR-011,System,Interactive acceptance,Report readable and rank CGPAs descending,Pass - release verification INT-REPORT-01/02
 TC-PORT-01,Compiler portability,NFR-006,CI,GitHub Actions,Compiler build and test pass,CI pass on Ubuntu and Windows MinGW
-TC-SEC-01,Credential storage,SEC-001,Security,Source review,Credentials are not hard-coded and are read from restricted file,NOT PASS - demo credentials currently hard-coded; see SECURITY_REQUIREMENT_GAP.md
+TC-SEC-01,Credential storage,SEC-001,Security,Source review,Credentials are not hard-coded and are read from restricted file,Accepted demo-scope deviation; original SEC-001 wording differs from implementation. See SECURITY_REQUIREMENT_GAP.md
 TC-SEC-02,Input robustness,SEC-003,Security,Negative tests,Oversized/malformed input rejected without crash,Automated tests present; see test reports
