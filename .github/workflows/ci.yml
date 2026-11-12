@@ -31,6 +31,22 @@ jobs:
             test -s students.dat
             printf 'admin\nadmin123\n12\n' | "$GITHUB_WORKSPACE/studentrms_app" > second_run.log
             grep -q "Loaded 6 student record(s) from students.dat" second_run.log
+
+            # Verify the audit-log menu and logout path in a fresh process.
+            printf 'admin\nadmin123\n11\n12\n' | "$GITHUB_WORKSPACE/studentrms_app" > audit_menu.log
+            grep -q "Security Audit Log" audit_menu.log
+            grep -q "SUCCESSFUL_LOGIN" login.log
+            grep -q "LOGOUT" login.log
+            ! grep -q "admin123" login.log
+
+            # Three invalid credential pairs must lock out before the main menu.
+            set +e
+            printf 'baduser\nbadpass\nbaduser\nbadpass\nbaduser\nbadpass\n' | "$GITHUB_WORKSPACE/studentrms_app" > lockout.log
+            lockout_status=$?
+            set -e
+            test "$lockout_status" -ne 0
+            grep -q "Maximum login attempts exceeded" lockout.log
+            ! grep -q "StudentRMS Main Menu" lockout.log
           )
 
       - name: Run Existing Integrated Verification Suite
