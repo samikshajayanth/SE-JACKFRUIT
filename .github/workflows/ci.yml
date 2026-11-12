@@ -47,6 +47,12 @@ jobs:
             test "$lockout_status" -ne 0
             grep -q "Maximum login attempts exceeded" lockout.log
             ! grep -q "StudentRMS Main Menu" lockout.log
+
+            # Overlong required text input must be rejected, not silently truncated.
+            long_name="$(printf '%060d' 0 | tr '0' 'A')"
+            printf 'admin\nadmin123\n2\nPES1UG24CS999\n%s\n12\n' "$long_name" | "$GITHUB_WORKSPACE/studentrms_app" > long_input.log
+            grep -q "Input is too long" long_input.log
+            ! grep -q "Student added" long_input.log
           )
 
       - name: Run Existing Integrated Verification Suite
