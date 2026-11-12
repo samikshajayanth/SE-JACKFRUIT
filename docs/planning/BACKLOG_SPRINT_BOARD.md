@@ -5,7 +5,7 @@ This tracking overview mirrors [`BACKLOG_AND_SPRINT_PLAN.md`](BACKLOG_AND_SPRINT
 ## Sprint goals and outcome
 
 - **Sprint 1 (19–23 Oct 2026): 23 story points — REPORTED COMPLETE.** The Sprint 1 review reports all 23 points completed, a working product, headless tests, and CI checks passing.
-- **Sprint 2 (26–30 Oct 2026): 17 story points — IMPLEMENTATION MERGED; CORE VERIFICATION RECORDED.** PR [#31](https://github.com/samikshajayanth/SE-JACKFRUIT/pull/31) was merged to `main`. Independent Windows/MinGW and interactive acceptance results are documented in [`SPRINT2_RELEASE_VERIFICATION.md`](../SPRINT2_RELEASE_VERIFICATION.md). Linux automated tests and coverage are green on the latest recorded main run. Repeatable Windows CI, demo video upload, and team sign-off remain open.
+- **Sprint 2 (26–30 Oct 2026): 17 story points — IMPLEMENTATION MERGED; CORE VERIFICATION RECORDED.** PR [#31](https://github.com/samikshajayanth/SE-JACKFRUIT/pull/31) was merged to `main`. Independent Windows/MinGW and interactive acceptance results are documented in [`SPRINT2_RELEASE_VERIFICATION.md`](../SPRINT2_RELEASE_VERIFICATION.md). Linux automated tests and coverage are green on the latest recorded main run. Windows CI and demo video evidence are complete; final team review and release-freeze sign-off remain open.
 
 ## Product backlog / sprint allocation
 
@@ -25,8 +25,8 @@ This tracking overview mirrors [`BACKLOG_AND_SPRINT_PLAN.md`](BACKLOG_AND_SPRINT
 | [US-12](https://github.com/samikshajayanth/SE-JACKFRUIT/issues/27) | Delete Record with Explicit Confirmation | 3 | Must Have | Sprint 2 | Saksham Bajpayi (M3) | Implemented and merged; regression and cancel/confirm verification recorded |
 | [US-13](https://github.com/samikshajayanth/SE-JACKFRUIT/issues/28) | Persistent Binary Storage & Crash Resilience | 5 | Must Have | Sprint 2 | Riddhi Mundada (M4) | Implemented and merged; save/load, corrupt-file, and restart checks recorded |
 | [US-14](https://github.com/samikshajayanth/SE-JACKFRUIT/issues/29) | Export Records and Rank Reports to Text File | 3 | Should Have | Sprint 2 | Riddhi Mundada (M4) | Implemented and merged; export/content and manual report inspection recorded |
-| [US-15](https://github.com/samikshajayanth/SE-JACKFRUIT/issues/30) | Console UI Refinement & Code Quality Freeze | 3 | Should Have | Sprint 2 | Samiksha Jayanth (M1) | Core implementation complete; final video and team sign-off pending |
-| [Release verification](https://github.com/samikshajayanth/SE-JACKFRUIT/issues/32) | Windows/MinGW build, interactive acceptance checks, restart persistence, report export, and evidence | 3 | Must Have | Sprint 2 | Rohan M (M2) | Core checks documented; Windows CI addition, demo video, and team sign-off remain |
+| [US-15](https://github.com/samikshajayanth/SE-JACKFRUIT/issues/30) | Console UI Refinement & Code Quality Freeze | 3 | Should Have | Sprint 2 | Samiksha Jayanth (M1) | Core implementation and demo video complete; team sign-off pending |
+| [Release verification](https://github.com/samikshajayanth/SE-JACKFRUIT/issues/32) | Windows/MinGW build, interactive acceptance checks, restart persistence, report export, and evidence | 3 | Must Have | Sprint 2 | Rohan M (M2) | Windows CI, interactive checks, report export, and demo video documented; team sign-off remains |
 
 ## Balanced workload
 
@@ -43,7 +43,7 @@ The original implementation assignments are preserved for traceability. The addi
 
 ## Board workflow
 
-Use **Todo → In Progress → Review / PR → Done**. Sprint 1 review reports completion. Sprint 2 implementation has merged and independent core verification is recorded; keep release-level work open until repeatable Windows CI, demo video evidence, and team sign-off are complete.
+Use **Todo → In Progress → Review / PR → Done**. Sprint 1 review reports completion. Sprint 2 implementation has merged and independent core verification is recorded; keep release-level work open until final team review and release-freeze sign-off are complete.
 
 ## Sprint 1 evidence
 
