@@ -98,13 +98,13 @@ The current authentication implementation uses compile-time demonstration creden
 
 | Requirement | Component | Design element | Verification evidence |
 |---|---|---|---|
-| FR-001, FR-014, FR-015; SEC-002 | Authentication + console | Login/logout/session functions and three-attempt startup loop | Unit authentication tests; interactive lockout/menu-gating test still to record |
+| FR-001, FR-014, FR-015; SEC-002 | Authentication + console | Login/logout/session functions and three-attempt startup loop | Unit authentication tests; CI smoke test verifies three-attempt lockout before the menu |
 | FR-002, FR-003, FR-005, FR-006, FR-012 | Student management + console | CRUD and validation APIs; update/delete handlers | Integrated/Sprint 2 suites; interactive update/delete evidence |
 | FR-004, FR-007 | Search/list | Roll/name search and sort functions | Search/list suite |
 | FR-008, FR-009 | CGPA + search/list + report | Percentage/CGPA and rank ordering | CGPA and rank tests |
 | FR-010; NFR-002; SEC-004 | Storage | Load/save and format/checksum validation | Storage regression, corruption and restart tests |
 | FR-011 | Reporting | Report export function | Report tests and interactive report inspection |
-| FR-013; SEC-005 | Console + authentication | Audit-log menu handler and event logger | Automated audit-event tests; interactive menu-view test still to record |
+| FR-013; SEC-005 | Console + authentication | Audit-log menu handler and event logger | Automated audit-event tests; CI smoke test verifies audit-log menu output |
 | SO-01 | Authentication + console | Session checks before record-management handlers | Authorization tests |
 | SO-02 | Validation + storage + authentication | Field validation, safe file handling and timestamped logs | Input, storage and audit tests |
 
