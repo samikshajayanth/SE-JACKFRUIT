@@ -4,7 +4,8 @@ TC-AUTH-02,Authentication,FR-001,Unit/System,test_suite,Invalid credentials reje
 TC-AUTH-03,Session,SEC-005,Unit/System,test_suite,Logout clears state; audit event logged,CI pass
 TC-AUTH-04,Input safety,SEC-001,Unit,test_part3_unit,Null credential pointer rejected,PASS - Part 3 CI
 TC-ADD-01,Create record,FR-002,Unit/System,test_suite,Valid insert and derived academics,CI pass
-TC-ADD-02,Duplicate validation,FR-003,Unit,test_suite,Duplicate roll rejected,CI pass\nTC-ADD-03,Null record array,Robustness,Unit,test_part3_unit,Invalid array rejected safely,PASS - Part 3 CI
+TC-ADD-02,Duplicate validation,FR-003,Unit,test_suite,Duplicate roll rejected,CI pass
+TC-ADD-03,Null record array,Robustness,Unit,test_part3_unit,Invalid array rejected safely,PASS - Part 3 CI
 TC-VAL-01,Marks validation,FR-012,Unit,test_suite,Marks outside 0..100 rejected,CI pass
 TC-VAL-02,Semester validation,Validation,Unit,test_part3_unit,Semester outside 1..8 rejected,PASS - Part 3 CI
 TC-SEARCH-01,Roll search,FR-004,Unit/System,test_suite,Case-insensitive exact match,CI pass
@@ -22,13 +23,18 @@ TC-UPD-02,Duplicate update,FR-005,Unit,test_sprint2,Duplicate roll rejected with
 TC-UPD-03,Invalid update,FR-005,Unit,test_sprint2,Invalid marks rejected,CI pass
 TC-UPD-04,Unknown update,FR-005,Unit,test_sprint2,Not-found result returned,CI pass
 TC-DEL-01,Delete,FR-006,Unit/System,test_sprint2,Record deleted and count decremented,CI pass
-TC-DEL-02,Cancel delete,FR-006,System,Manual console test,Cancellation preserves record,Manual pending
+TC-DEL-02,Cancel delete,FR-006,System,Interactive acceptance,Choosing N preserves record,Pass - release verification INT-DEL-01
 TC-DEL-03,Unknown delete,FR-006,Unit,test_sprint2,Not-found result returned,CI pass
+TC-DEL-04,Confirm delete,FR-006,System,Interactive acceptance,Choosing Y deletes record,Pass - release verification INT-DEL-02
 TC-PERSIST-01,Binary round trip,FR-010,Unit/Integration,test_sprint2,Save/load preserve records,CI pass
 TC-PERSIST-02,Initial seeding,NFR-002,System,CI smoke,First launch creates seeded store,CI pass
 TC-PERSIST-03,Restart restore,NFR-002,System,CI smoke,Second launch reads persisted records,CI pass
+TC-PERSIST-04,Mutation restart,FR-010,System,Interactive acceptance,Updated record remains and deleted record remains absent after restart,Pass - release verification INT-PERSIST-01
 TC-REL-01,Corrupt store,NFR-002,Unit,test_sprint2,Corrupt file rejected,CI pass
 TC-EXPORT-01,Report export,FR-011,Unit/Integration,test_sprint2,Full list and rank list sections emitted,CI pass
 TC-EXPORT-02,Report parameters,Robustness,Unit,test_part3_unit,Null path/negative count rejected,PASS - Part 3 CI
 TC-EXPORT-03,Report I/O,Robustness,Unit,test_part3_unit,Invalid destination returns I/O error,PASS - Part 3 CI
-TC-PORT-01,Compiler portability,NFR-005/NFR-006,CI,GitHub Actions,Compiler build and test pass,CI pass on Ubuntu
+TC-EXPORT-04,Interactive report inspection,FR-011,System,Interactive acceptance,Report readable and rank CGPAs descending,Pass - release verification INT-REPORT-01/02
+TC-PORT-01,Compiler portability,NFR-006,CI,GitHub Actions,Compiler build and test pass,CI pass on Ubuntu and Windows MinGW
+TC-SEC-01,Credential storage,SEC-001,Security,Source review,Credentials are not hard-coded and are read from restricted file,NOT PASS - demo credentials currently hard-coded; see SECURITY_REQUIREMENT_GAP.md
+TC-SEC-02,Input robustness,SEC-003,Security,Negative tests,Oversized/malformed input rejected without crash,Automated tests present; see test reports
