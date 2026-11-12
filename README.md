@@ -5,9 +5,9 @@ StudentRMS is a modular C11 console application for managing student academic re
 
 ## Features
 
-- Administrator login with failed-attempt lockout and authentication audit logging
+- Administrator login with hidden interactive password entry, failed-attempt lockout, and authentication audit logging
 - Add, update, delete, search, and list student records
-- Case-insensitive search by roll number or name
+- Case-insensitive roll-number identity across search, duplicate checks, update, and delete
 - Sorting by CGPA/rank, name, or roll number
 - Input validation for names, departments, semesters, marks, and duplicate rolls
 - Automatic percentage and CGPA calculation
@@ -81,9 +81,9 @@ make all
 ./studentrms_app
 ```
 
-The application creates `students.dat` with sample records on first launch. Runtime files such as `students.dat`, `reports.txt`, and `login.log` are created in the current working directory.
+The application creates `students.dat` with six synthetic student records on first launch. Runtime files such as `students.dat`, `reports.txt`, and `login.log` are created in the current working directory.
 
-On Windows, use a MinGW-w64 terminal or PowerShell with MinGW on `PATH`:
+On interactive terminals, the password is not echoed while typing. Non-interactive/piped sessions retain the bounded line-input path used by CI.\n\nOn Windows, use a MinGW-w64 terminal or PowerShell with MinGW on `PATH`:
 
 ```bat
 cmd /c build.bat
