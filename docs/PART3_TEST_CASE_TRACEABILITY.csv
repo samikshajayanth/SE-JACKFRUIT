@@ -47,4 +47,4 @@ TC-INPUT-LENGTH-01,Reject empty or overlong text fields,SEC-003,Interactive syst
 TC-ROLL-04,Case-insensitive roll identity,FR-003;FR-005;FR-006,Unit,test_sprint2;test_part3_unit,CRUD and duplicate checks treat case-only variants as the same identifier,PR CI pending
 TC-PERSIST-06,Recover missing primary from backup,FR-010;NFR-002,Regression,test_sprint2,Missing primary is restored from a valid .bak file after simulated interrupted save,PR CI pending
 TC-REL-02,Recover corrupt primary from valid backup,SEC-004;NFR-002,Regression,test_sprint2,Valid .bak is promoted and corrupt primary is quarantined/removed,PR CI pending
-TC-INPUT-PASSWORD-01,Hide interactive password input,SEC-005,Manual,Interactive terminal,Password characters are not echoed while typing,Manual verification pending\n
+TC-INPUT-PASSWORD-01,Hide interactive password input,SEC-005,Manual,Interactive terminal,Password characters are not echoed while typing,Manual verification pending
