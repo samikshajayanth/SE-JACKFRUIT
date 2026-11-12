@@ -105,7 +105,7 @@ static void test_search_list_module(void) {
     TEST_ASSERT(status == SEARCH_SUCCESS, "TC-SEARCH-01: Exact roll number found");
     TEST_ASSERT(strcmp(res.name, "Kabir Mehta") == 0, "Matched student name is Kabir Mehta");
 
-    status = search_by_roll_no(sample, 4, "pes1ug24cs381", &res);
+    status = search_by_roll_no(sample, 4, "demo2026cs002", &res);
     TEST_ASSERT(status == SEARCH_SUCCESS, "TC-SEARCH-01: Case-insensitive roll search passed");
 
     status = search_by_roll_no(sample, 4, "UNKNOWN_ROLL", &res);
@@ -113,12 +113,12 @@ static void test_search_list_module(void) {
 
     /* TC-SEARCH-02: Substring search by name */
     Student matches[4];
-    int count = search_by_name(sample, 4, "rohan", matches, 4);
-    TEST_ASSERT(count == 1, "TC-SEARCH-02: Substring 'rohan' finds 1 record");
-    TEST_ASSERT(strcmp(matches[0].roll_no, "DEMO2026CS002") == 0, "Matched roll matches Rohan");
+    int count = search_by_name(sample, 4, "kabir", matches, 4);
+    TEST_ASSERT(count == 1, "TC-SEARCH-02: Substring 'kabir' finds 1 record");
+    TEST_ASSERT(strcmp(matches[0].roll_no, "DEMO2026CS002") == 0, "Matched roll matches Kabir");
 
-    count = search_by_name(sample, 4, "sha", matches, 4);
-    TEST_ASSERT(count == 2, "TC-SEARCH-02: Substring 'sha' finds Samiksha & Saksham");
+    count = search_by_name(sample, 4, "ra", matches, 4);
+    TEST_ASSERT(count == 2, "TC-SEARCH-02: Substring 'ra' finds Amara & Mira");
 
     /* TC-LIST-01: Sort by CGPA Descending */
     Student sort_arr[4];
@@ -131,7 +131,7 @@ static void test_search_list_module(void) {
     /* TC-LIST-01: Sort by Name Ascending */
     s_res = sort_students(sort_arr, 4, SORT_BY_NAME_ASC);
     TEST_ASSERT(s_res == 0, "TC-LIST-01: sort_students NAME_ASC succeeded");
-    TEST_ASSERT(strcmp(sort_arr[0].name, "Dev Iyer") == 0, "First alphabetically is Dev Iyer");
+    TEST_ASSERT(strcmp(sort_arr[0].name, "Dev Iyer") == 0, "First alphabetically is Amara Shah");
 }
 
 int main(void) {
