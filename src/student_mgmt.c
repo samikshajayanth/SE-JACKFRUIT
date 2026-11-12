@@ -6,7 +6,7 @@
 static int nonempty_terminated_field(const char* field, size_t capacity) {
     const char* terminator;
     if (!field || capacity == 0) return 0;
-    terminator = (const char*)memchr(field, '\\0', capacity);
+    terminator = (const char*)memchr(field, '\0', capacity);
     return terminator != NULL && terminator != field;
 }
 
@@ -17,7 +17,7 @@ static int roll_numbers_equal(const char* left, const char* right) {
         unsigned char a = (unsigned char)left[i];
         unsigned char b = (unsigned char)right[i];
         if (tolower(a) != tolower(b)) return 0;
-        if (a == '\\0') return 1;
+        if (a == '\0') return 1;
     }
     return 0;
 }
