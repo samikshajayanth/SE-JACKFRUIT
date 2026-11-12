@@ -140,12 +140,9 @@ static void ui_update_student(void) {
         return;
     }
 
-    printf("\n--- Update Student Record (FR-005) ---\nCurrent roll number: ");
-    if (scanf("%15s", lookup_roll) != 1) {
-        discard_line();
-        return;
-    }
+    printf("\n--- Update Student Record (FR-005) ---\n");
     discard_line();
+    if (!read_text_field("Current roll number: ", lookup_roll, sizeof(lookup_roll))) return;
     index = find_student_by_roll(g_students, g_count, lookup_roll);
     if (index < 0) {
         printf("[INFO] No student exists with roll number '%s'.\n", lookup_roll);
@@ -187,12 +184,9 @@ static void ui_delete_student(void) {
         return;
     }
 
-    printf("\n--- Delete Student Record (FR-006) ---\nRoll number: ");
-    if (scanf("%15s", roll) != 1) {
-        discard_line();
-        return;
-    }
+    printf("\n--- Delete Student Record (FR-006) ---\n");
     discard_line();
+    if (!read_text_field("Roll number: ", roll, sizeof(roll))) return;
     index = find_student_by_roll(g_students, g_count, roll);
     if (index < 0) {
         printf("[INFO] No student exists with roll number '%s'.\n", roll);
@@ -228,11 +222,9 @@ static void ui_delete_student(void) {
 static void ui_search_roll(void) {
     char roll[MAX_ROLL_LEN];
     Student result;
-    printf("\n--- Search by Roll Number ---\nRoll Number: ");
-    if (scanf("%15s", roll) != 1) {
-        discard_line();
-        return;
-    }
+    printf("\n--- Search by Roll Number ---\n");
+    discard_line();
+    if (!read_text_field("Roll Number: ", roll, sizeof(roll))) return;
     if (search_by_roll_no(g_students, g_count, roll, &result) == SEARCH_SUCCESS)
         display_student_card(&result);
     else
@@ -242,10 +234,9 @@ static void ui_search_roll(void) {
 static void ui_search_name(void) {
     char query[MAX_NAME_LEN];
     Student results[MAX_SYSTEM_RECORDS];
-    printf("\n--- Search by Name ---\nEnter a name or substring: ");
+    printf("\n--- Search by Name ---\n");
     discard_line();
-    if (!fgets(query, sizeof(query), stdin)) return;
-    query[strcspn(query, "\r\n")] = '\0';
+    if (!read_text_field("Enter a name or substring: ", query, sizeof(query))) return;
     int found = search_by_name(g_students, g_count, query, results, MAX_SYSTEM_RECORDS);
     if (found > 0) display_student_table(results, found);
     else printf("[INFO] No records found matching '%s'.\n", query);
