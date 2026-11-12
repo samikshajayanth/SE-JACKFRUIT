@@ -1,63 +1,65 @@
-# StudentRMS — Part 3 Test Execution Guide
+# StudentRMS — Test Execution Guide
 
 ## Prerequisites
 
-Linux: GCC, GNU Make, and gcov (`gcc`, `make`, `gcov`). Windows: MinGW-w64 GCC and GNU Make (or use `build.bat` for the standard build). Coverage collection with gcov is configured for GCC-compatible Linux toolchains.
+- Linux/macOS: GCC, GNU Make, and gcov.
+- Windows: MinGW-w64 GCC on PATH. Use the supplied \`build.bat\` as the supported native Windows build-and-test entry point.
+- Coverage collection is configured for GCC/gcov.
 
-## Standard Linux test run
+## Standard Linux/macOS test run
 
 From the repository root:
 
-```bash
+\`\`\`bash
 make clean
 make all
-./test_suite
-./test_search_list
-./test_sprint2
-./test_part3_unit
-./test_perf
-```
+make test
+\`\`\`
 
-## Standard Windows/MinGW build
+The test target runs \`test_suite\`, \`test_search_list\`, \`test_sprint2\`, \`test_part3_unit\`, and \`test_perf\`.
 
-Open a MinGW-w64 terminal or PowerShell with MinGW `bin` on PATH, then run:
+## Standard Windows/MinGW build and test
 
-```bat
+Open a MinGW-w64 terminal or PowerShell with MinGW \`bin\` on PATH:
+
+\`\`\`bat
 cmd /c build.bat
-test_search_list.exe
-test_part3_unit.exe
-```
+\`\`\`
 
-The supported Windows build entry point compiles the application and all test targets, then executes the integrated, Sprint 2, and performance suites. The dedicated search/list and Part 3 robustness executables are run separately in the Windows CI job.
+The script compiles the interactive application and all five test executables, then runs every test executable. If a test fails, the script exits with a non-zero status.
+
+The Makefile uses Unix shell utilities such as \`rm\`; therefore \`mingw32-make clean\` is not the supported clean command in a native Windows shell. Use \`build.bat\` for the documented Windows workflow.
 
 ## Coverage run (GCC/gcov)
 
-```bash
+\`\`\`bash
 make clean
 make coverage
-```
+\`\`\`
 
-The coverage target rebuilds binaries with `--coverage -O0 -g`, runs the test binaries, and invokes `gcov -b -c` for each production source. Preserve generated `.gcov` files and record the toolchain version. Do not compare coverage numbers across different build flags or compiler versions without documenting the difference.
+The coverage target rebuilds with \`--coverage -O0 -g\`, runs the test binaries, and invokes gcov. Preserve generated \`.gcov\` files and record compiler/tool versions. Do not compare measurements across different compiler versions or flags without documenting the difference.
 
-## System validation checklist (manual)
+## System validation checklist
 
-1. Run the application from a clean temporary working directory.
-2. Confirm first launch creates `students.dat` with initial sample records.
-3. Login with valid credentials; repeat with invalid credentials in a fresh directory and confirm access is denied after configured attempts.
-4. Add a valid record and confirm success plus derived percentage/CGPA.
-5. Attempt duplicate roll, invalid marks, and invalid semester; confirm each is rejected.
-6. Update one record and confirm displayed derived fields change.
-7. Delete a record, choose `N`, and verify it remains; repeat and choose `Y`, then verify it is removed.
-8. Exit and restart. Confirm the modified record set is restored from `students.dat`.
-9. Export reports and inspect both the all-records and rank-list sections in `reports.txt`.
-10. Inspect `login.log` for timestamped authentication events.
+Run the application in an isolated temporary working directory. Do not use or overwrite team working data.
 
-Record each outcome, date/time, tester, environment, and evidence filename in `SYSTEM_VALIDATION_REPORT.md`. Never mark a step passed based only on the presence of a menu option.
+1. Confirm first launch creates the sample data file.
+2. Login with valid credentials; separately verify invalid credentials are denied.
+3. Add a valid record and confirm percentage/CGPA calculation.
+4. Attempt duplicate roll, invalid marks, and invalid semester; confirm rejection.
+5. Update a record and verify recalculated academic fields.
+6. Cancel deletion with \`N\` and verify the record remains.
+7. Confirm deletion with \`Y\` and verify the record is removed.
+8. Exit and restart; verify the updated record remains and the deleted record is absent.
+9. Export reports and inspect both the complete student list and descending rank list.
+10. Inspect \`login.log\` for timestamped authentication events.
+
+Record tester, date/time, environment, outcome, and evidence filename in \`SYSTEM_VALIDATION_REPORT.md\`. A menu option or an automated unit test alone is not evidence of a completed interactive walkthrough.
 
 ## Evidence to capture
 
-- Terminal output for each automated test executable.
-- Full GitHub Actions run page and successful job steps.
-- gcov output and generated `.gcov` files.
-- Screenshots/video of add, update, delete-cancel, delete-confirm, restart, and report export flows.
-- Compiler version (`gcc --version`), GNU Make version, and OS/version.
+- Console output for all five automated test executables.
+- GitHub Actions run and successful job steps.
+- gcov output and generated coverage files.
+- Screenshots/video of login, add, update, delete-cancel, delete-confirm, restart, and report export.
+- Compiler, GNU Make, OS, and version information.
