@@ -83,7 +83,9 @@ make all
 
 The application creates `students.dat` with six synthetic student records on first launch. Runtime files such as `students.dat`, `reports.txt`, and `login.log` are created in the current working directory.
 
-On interactive terminals, the password is not echoed while typing. Non-interactive/piped sessions retain the bounded line-input path used by CI.\n\nOn Windows, use a MinGW-w64 terminal or PowerShell with MinGW on `PATH`:
+On interactive terminals, the password is not echoed while typing. Non-interactive/piped sessions retain the bounded line-input path used by CI.
+
+On Windows, use a MinGW-w64 terminal or PowerShell with MinGW on `PATH`:
 
 ```bat
 cmd /c build.bat
