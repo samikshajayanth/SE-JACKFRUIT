@@ -38,6 +38,8 @@ Both jobs in the Part 3 workflow completed successfully:
 
 The full raw console output is available from the workflow run linked above. The gcov evidence is attached as a workflow artifact and summarized in the code/branch coverage reports.
 
-## 5. Limitations
+## 5. Limitations and later evidence
 
-The automated unit suites do not replace interactive system validation. Delete cancellation/confirmation, update through the console UI, mutation persistence across an application restart, manual report-file inspection, audit-log viewing, and Windows/MinGW execution still require evidence from the system-validation checklist.
+This report is a historical record of the 31 October 2026 Part 3 automated run. At that time, the automated unit suites did not replace interactive system validation. Subsequent interactive update/delete, delete-cancellation, mutation-persistence, report-inspection, and native Windows/MinGW results are documented separately in [SPRINT2_RELEASE_VERIFICATION.md](SPRINT2_RELEASE_VERIFICATION.md) and reconciled in [SYSTEM_VALIDATION_REPORT.md](SYSTEM_VALIDATION_REPORT.md).
+
+Interactive invalid-login walkthrough and menu-based audit-log inspection are not separately recorded in the later release matrix. The current demo credential is hard-coded, so SRS SEC-001 remains an open gap; see [SECURITY_REQUIREMENT_GAP.md](SECURITY_REQUIREMENT_GAP.md).
