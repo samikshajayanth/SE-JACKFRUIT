@@ -48,7 +48,7 @@ All three checks passed on final commit `14d19bc0aa3d0de0079a738f0cf8bbec935c948
 
 ### Post-audit authentication smoke checks
 
-A subsequent CI run [43253003166](https://github.com/samikshajayanth/SE-JACKFRUIT/actions/runs/43253003166) passed all three jobs (Linux GCC, Windows MinGW, and GCC coverage). The Linux smoke test now additionally selects audit-log menu option 11, logs out through option 12, verifies timestamped login/logout events, confirms the password is absent from login.log, and verifies that three invalid credential pairs exit before the main menu.
+A subsequent CI run [43253003166](https://github.com/samikshajayanth/SE-JACKFRUIT/actions/runs/43253003166) passed all three jobs (Linux GCC, Windows MinGW, and GCC coverage). The latest source verification [run 43254584426](https://github.com/samikshajayanth/SE-JACKFRUIT/actions/runs/43254584426) also passed all three jobs after adding bounded text-field validation and its overlong-input smoke test. The Linux smoke test now additionally selects audit-log menu option 11, logs out through option 12, verifies timestamped login/logout events, confirms the password is absent from login.log, and verifies that three invalid credential pairs exit before the main menu.
 
 ## 3. Interactive acceptance matrix
 
