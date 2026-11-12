@@ -1,7 +1,7 @@
 # StudentRMS — System Validation Report (Part 3)
 
 **Report updated:** 12 November 2026  
-**Source implementation verified:** \`14d19bc0aa3d0de0079a738f0cf8bbec935c9486\` (\`main\`)  
+**Source implementation verified:** `14d19bc0aa3d0de0079a738f0cf8bbec935c9486` (`main`)  
 **Release evidence:** [Sprint 2 Release Verification](SPRINT2_RELEASE_VERIFICATION.md)  
 **CI evidence:** [Part 3 workflow run 43163536379](https://github.com/samikshajayanth/SE-JACKFRUIT/actions/runs/43163536379)
 
@@ -35,18 +35,18 @@ The later Sprint 2 release verification records successful native Windows/MinGW 
 
 - Linux GCC build and test workflow: PASS.
 - Windows MinGW CI build and test workflow: PASS.
-- Native Windows \`build.bat\` verification: PASS.
+- Native Windows `build.bat` verification: PASS.
 - Native Windows integrated test: 28/28.
 - Native Windows search/list test: 22/22.
 - Native Windows Sprint 2 regression test: 18/18.
 - Native Windows performance benchmark: 0.0550 seconds.
 - Linux Part 3 performance benchmark: 0.0294 seconds against a 2.0000-second target.
 
-The native MinGW \`mingw32-make clean\` command is not supported in the tested shell because the Makefile invokes Unix \`rm\`. The supported Windows entry point is \`build.bat\`; that script passed. This limitation is documented rather than reported as a product failure.
+The native MinGW `mingw32-make clean` command is not supported in the tested shell because the Makefile invokes Unix `rm`. The supported Windows entry point is `build.bat`; that script passed. This limitation is documented rather than reported as a product failure.
 
 ## 5. Security limitation
 
-The current educational build uses demonstration credentials compiled into \`src/auth.c\` (\`admin\` / \`admin123\`). Therefore SRS requirement SEC-001, as originally worded (credentials read from a separate restricted-access file), is **not satisfied** by this implementation. Do not claim full SEC-001 compliance. See [Security Requirement Gap and Disposition](SECURITY_REQUIREMENT_GAP.md).
+The current educational build uses demonstration credentials compiled into `src/auth.c` (`admin` / `admin123`). Therefore SRS requirement SEC-001, as originally worded (credentials read from a separate restricted-access file), is **not satisfied** by this implementation. Do not claim full SEC-001 compliance. See [Security Requirement Gap and Disposition](SECURITY_REQUIREMENT_GAP.md).
 
 ## 6. Conclusion
 
