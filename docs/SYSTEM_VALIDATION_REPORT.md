@@ -46,8 +46,8 @@ The native MinGW `mingw32-make clean` command is not supported in the tested she
 
 ## 5. Security limitation
 
-The current educational build uses demonstration credentials compiled into `src/auth.c` (`admin` / `admin123`). Therefore SRS requirement SEC-001, as originally worded (credentials read from a separate restricted-access file), is **not satisfied** by this implementation. Do not claim full SEC-001 compliance. See [Security Requirement Gap and Disposition](SECURITY_REQUIREMENT_GAP.md).
+The current educational build uses demonstration credentials compiled into `src/auth.c` (`admin` / `admin123`). The project owner has accepted the compiled demonstration credentials for this academic project; no credentials-file implementation is planned. This is a documented scope deviation from the original SEC-001 wording, not a claim that embedded credentials satisfy the original requirement. See [SEC-001 Demonstration Credential Design Decision](SECURITY_REQUIREMENT_GAP.md).
 
 ## 6. Conclusion
 
-Automated build, unit/regression, robustness, performance, seed-data restart, native Windows/MinGW, interactive update/delete, mutation persistence, and report-export checks have documented passing evidence. Interactive invalid-login walkthrough and menu-based audit-log inspection are not separately recorded. SEC-001 remains an explicit security gap because the demo credentials are hard-coded. Final team review and release-freeze sign-off remain pending in GitHub issue #32.
+Automated build, unit/regression, robustness, performance, seed-data restart, native Windows/MinGW, interactive update/delete, mutation persistence, and report-export checks have documented passing evidence. Interactive invalid-login walkthrough and menu-based audit-log inspection are not separately recorded. The demo credential choice is an accepted academic-scope deviation from the original SEC-001 wording; other security requirements remain subject to verification. Final team review and release-freeze sign-off remain pending in GitHub issue #32.
