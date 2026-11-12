@@ -67,9 +67,20 @@ This document updates the original Sprint 1 cases and adds Sprint 2 regression c
 - **Manual pending:** requires interactive terminal input or human observation not yet captured by the automated harness or release evidence.
 - **Not measured:** no trustworthy runtime/coverage value has been collected for the current candidate.
 
-The CI run on `main` dated 27 October 2026 passed compile-all, first-launch and restart-persistence smoke test, integrated unit suite, Sprint 2 regression suite, and 1,000-record performance benchmark. See [Build & Verify run](https://github.com/samikshajayanth/SE-JACKFRUIT/actions/runs/40484833650). Later native Windows/MinGW and interactive acceptance evidence is recorded in `SPRINT2_RELEASE_VERIFICATION.md`.
+Current Linux GCC, Windows MinGW, and coverage jobs are recorded in the latest successful Part 3 workflow. The detailed release-level interactive results are recorded in `SPRINT2_RELEASE_VERIFICATION.md`.
 
-## 5. Test execution procedure
+## 5. Additional regression cases added during the reliability review
+
+| ID | Module / Requirement | Scenario | Expected result | Test level |
+|---|---|---|---|---|
+| TC-ROLL-04 | Record identity / FR-003, FR-005, FR-006 | Search, update, and attempt duplicate insertion using different letter case in the same roll number | CRUD lookup and uniqueness checks treat the identifier consistently and reject case-only duplicates | Unit |
+| TC-PERSIST-06 | Storage recovery / FR-010, NFR-002 | Simulate interruption after moving the primary store to `.bak`, leaving no primary file | Startup restores the valid backup and preserves the stored records | Regression |
+| TC-REL-02 | Recovery / SEC-004, NFR-002 | Provide a corrupt primary store alongside a valid `.bak` file | Valid backup is restored; corrupt primary is not treated as a fresh installation | Regression |
+| TC-INPUT-PASSWORD-01 | Authentication / SEC-005 | Type the administrator password in an interactive terminal | Password characters are not echoed; piped CI input continues to work | Manual |
+
+These cases are implemented in the reliability-review branch. Their final CI status is recorded against the pull-request workflow run; the password-echo check remains a manual terminal observation.
+
+## 6. Test execution procedure
 
 ```bash
 make clean
