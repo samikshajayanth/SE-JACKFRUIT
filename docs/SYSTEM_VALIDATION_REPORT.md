@@ -3,7 +3,7 @@
 **Report updated:** 12 November 2026  
 **Source implementation verified:** `14d19bc0aa3d0de0079a738f0cf8bbec935c9486` (`main`)  
 **Release evidence:** [Sprint 2 Release Verification](SPRINT2_RELEASE_VERIFICATION.md)  
-**CI evidence:** [Part 3 workflow run 43163536379](https://github.com/samikshajayanth/SE-JACKFRUIT/actions/runs/43163536379)
+**CI evidence:** [Part 3 workflow run 43163536379](https://github.com/samikshajayanth/SE-JACKFRUIT/actions/runs/43163536379) and [audit/logout/lockout smoke checks run 43253003166](https://github.com/samikshajayanth/SE-JACKFRUIT/actions/runs/43253003166)
 
 ## 1. Objective
 
@@ -31,7 +31,11 @@ The later Sprint 2 release verification records successful native Windows/MinGW 
 | SV-10 | View authentication audit log through the menu | **PASS — CI SMOKE** | Added CI smoke flow selects menu option 11 and checks timestamped login/logout events in login.log; also checks the password is absent from the log |
 | SV-11 | Windows/MinGW build and test execution | **PASS** | Native Windows verification and GitHub Actions Windows MinGW job |
 
-## 4. Cross-platform and performance summary
+## 4. Additional authentication smoke checks
+
+A later Linux GCC CI run (43253003166) also exercised the audit-log menu (option 11), logout (option 12), timestamped login/logout events, absence of the password in login.log, and three-invalid-attempt lockout before the main menu. Linux, Windows MinGW, and GCC coverage jobs all passed on that run.
+
+## 5. Cross-platform and performance summary
 
 - Linux GCC build and test workflow: PASS.
 - Windows MinGW CI build and test workflow: PASS.
@@ -44,10 +48,10 @@ The later Sprint 2 release verification records successful native Windows/MinGW 
 
 The native MinGW `mingw32-make clean` command is not supported in the tested shell because the Makefile invokes Unix `rm`. The supported Windows entry point is `build.bat`; that script passed. This limitation is documented rather than reported as a product failure.
 
-## 5. Security limitation
+## 6. Security limitation
 
 The current educational build uses demonstration credentials compiled into `src/auth.c` (`admin` / `admin123`). The project owner has accepted the compiled demonstration credentials for this academic project; no credentials-file implementation is planned. This is a documented scope deviation from the original SEC-001 wording, not a claim that embedded credentials satisfy the original requirement. See [SEC-001 Demonstration Credential Design Decision](SECURITY_REQUIREMENT_GAP.md).
 
-## 6. Conclusion
+## 7. Conclusion
 
 Automated build, unit/regression, robustness, performance, seed-data restart, native Windows/MinGW, interactive update/delete, mutation persistence, and report-export checks have documented passing evidence. Interactive invalid-login walkthrough is not separately recorded; the three-attempt lockout and audit-log menu flows are now exercised by CI smoke checks. The demo credential choice is an accepted academic-scope deviation from the original SEC-001 wording; other security requirements remain subject to verification. Final team review and release-freeze sign-off remain pending in GitHub issue #32.
