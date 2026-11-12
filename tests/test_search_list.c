@@ -36,7 +36,7 @@ void test_search_by_roll_no() {
     TEST_ASSERT(result.cgpa == 9.6f, "Returned record CGPA matches");
 
     /* 2. Case-insensitivity test */
-    status = search_by_roll_no(sample_students, 5, "pes1ug24cs381", &result);
+    status = search_by_roll_no(sample_students, 5, "demo2026cs002", &result);
     TEST_ASSERT(status == SEARCH_SUCCESS, "Search roll number is case-insensitive");
     TEST_ASSERT(strcmp(result.roll_no, "DEMO2026CS002") == 0, "Case-insensitive roll matches correctly");
 
@@ -73,7 +73,7 @@ void test_search_by_name() {
 
     /* 4. Partial substring (middle of name) */
     count = search_by_name(sample_students, 5, "Nair", results, 5);
-    TEST_ASSERT(count == 1, "Substring 'Nair' returns Dev Iyer");
+    TEST_ASSERT(count == 1, "Substring 'Nair' returns Mira Nair");
 }
 
 void test_sort_students() {
