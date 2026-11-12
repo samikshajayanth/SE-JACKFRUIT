@@ -1,6 +1,13 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#ifdef _WIN32
+#include <conio.h>
+#include <io.h>
+#else
+#include <termios.h>
+#include <unistd.h>
+#endif
 #include "auth.h"
 #include "student.h"
 #include "student_mgmt.h"
@@ -47,18 +54,69 @@ static int read_text_field(const char* prompt, char* destination, size_t capacit
     return 1;
 }
 
+/* Hide the administrator password on interactive terminals. CI/piped input
+   falls back to the same bounded line reader so automated smoke tests work. */
+static int read_password_field(const char* prompt, char* destination, size_t capacity) {
+    if (!prompt || !destination || capacity < 2) return 0;
+#ifdef _WIN32
+    if (!_isatty(_fileno(stdin))) return read_text_field(prompt, destination, capacity);
+    printf("%s", prompt);
+    fflush(stdout);
+    size_t length = 0;
+    int too_long = 0;
+    int ch;
+    while ((ch = _getch()) != '\r' && ch != '\n') {
+        if (ch == 8) {
+            if (length > 0) length--;
+            continue;
+        }
+        if (ch == 0 || ch == 224) {
+            (void)_getch();
+            continue;
+        }
+        if (length + 1 < capacity && !too_long) destination[length++] = (char)ch;
+        else too_long = 1;
+    }
+    destination[length] = '\0';
+    putchar('\n');
+    if (too_long) {
+        destination[0] = '\0';
+        printf("[ERROR] Input is too long (maximum %zu characters).\n", capacity - 1);
+        return 0;
+    }
+    if (length == 0) {
+        printf("[ERROR] This field cannot be empty.\n");
+        return 0;
+    }
+    return 1;
+#else
+    if (!isatty(STDIN_FILENO)) return read_text_field(prompt, destination, capacity);
+    struct termios original, hidden;
+    if (tcgetattr(STDIN_FILENO, &original) != 0)
+        return read_text_field(prompt, destination, capacity);
+    hidden = original;
+    hidden.c_lflag &= (tcflag_t)~ECHO;
+    if (tcsetattr(STDIN_FILENO, TCSAFLUSH, &hidden) != 0)
+        return read_text_field(prompt, destination, capacity);
+    int result = read_text_field(prompt, destination, capacity);
+    (void)tcsetattr(STDIN_FILENO, TCSAFLUSH, &original);
+    putchar('\n');
+    return result;
+#endif
+}
+
 static void seed_initial_records(void) {
-    Student team_records[] = {
-        {"PES1UG24CS414", "Samiksha Jayanth", "CSE", 5, {88, 92, 90, 89, 94, 91}, 0, 0},
-        {"PES1UG24CS381", "Rohan M", "CSE", 5, {95, 96, 94, 98, 92, 97}, 0, 0},
-        {"PES1UG24CS404", "Saksham Bajpayi", "CSE", 5, {82, 85, 80, 84, 86, 83}, 0, 0},
-        {"PES1UG24CS372", "Riddhi Mundada", "CSE", 5, {91, 93, 89, 92, 90, 94}, 0, 0},
-        {"PES1UG24CS101", "Aarav Sharma", "ECE", 5, {75, 78, 82, 79, 81, 74}, 0, 0},
-        {"PES1UG24CS102", "Ananya Verma", "AIML", 5, {89, 91, 90, 92, 88, 90}, 0, 0}
+    Student demo_records[] = {
+        {"DEMO2026CS001", "Aarav Mehta", "CSE", 5, {88, 82, 90, 89, 84, 91}, 0, 0},
+        {"DEMO2026CS002", "Diya Kapoor", "ECE", 5, {75, 78, 82, 79, 81, 74}, 0, 0},
+        {"DEMO2026CS003", "Kabir Shah", "CSE", 5, {95, 86, 94, 88, 92, 87}, 0, 0},
+        {"DEMO2026CS004", "Mira Nair", "AIML", 5, {91, 83, 89, 92, 90, 84}, 0, 0},
+        {"DEMO2026CS005", "Ishaan Rao", "EEE", 5, {78, 81, 76, 85, 80, 79}, 0, 0},
+        {"DEMO2026CS006", "Anaya Iyer", "CSE", 5, {89, 91, 90, 82, 88, 86}, 0, 0}
     };
-    int n = (int)(sizeof(team_records) / sizeof(team_records[0]));
+    int n = (int)(sizeof(demo_records) / sizeof(demo_records[0]));
     for (int i = 0; i < n; i++)
-        (void)add_student_record(g_students, &g_count, MAX_SYSTEM_RECORDS, &team_records[i]);
+        (void)add_student_record(g_students, &g_count, MAX_SYSTEM_RECORDS, &demo_records[i]);
 }
 
 static int persist_current_state(void) {
@@ -313,7 +371,7 @@ int main(void) {
             printf("[ERROR] Invalid username input. Attempt %d of 3.\n", attempts);
             continue;
         }
-        if (!read_text_field("Password: ", password, sizeof(password))) {
+        if (!read_password_field("Password: ", password, sizeof(password))) {
             attempts++;
             printf("[ERROR] Invalid password input. Attempt %d of 3.\n", attempts);
             continue;
