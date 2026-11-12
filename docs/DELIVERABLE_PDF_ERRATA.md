@@ -4,13 +4,13 @@ This file records corrections identified during the repository/document audit. I
 
 ## Deliverable 1 — Synopsis
 
-- Verify and correct the SRN in the Member 3 / Saksham Bajpayi row. The parsed PDF text shows an inconsistent value; the expected team SRN is `PES1UG24CS404`.
-- Verify the Member 4 / Riddhi Mundada SRN and use the consistent value `PES1UG24CS372`; the parsed PDF text contains an inconsistent rendering.
+- Correct the Member 3 / Saksham Bajpayi SRN in Deliverable 1: it currently reads `PES1UG24CS414`, but the roster and Deliverable 2 identify Saksham as `PES1UG24CS404`.
+- Correct the Member 4 / Riddhi Mundada SRN in Deliverable 2: it currently reads `PES12IG24CS372`; the correct format is `PES1UG24CS372`.
 - Recheck the ownership matrix against the team roster before exporting the corrected PDF.
 
 ## Deliverable 2 — Requirements package
 
-- Correct the Member 4 SRN to `PES1UG24CS372` wherever it appears.
+- Correct the Member 4 SRN to `PES1UG24CS372` wherever it appears. Also verify the Member 3 SRN remains `PES1UG24CS404`.
 - The project owner accepts the compiled demo credentials for this academic scope. Record this as a deviation from the original SEC-001 wording and revise the final SRS/report accordingly; do not describe the original separate-file requirement as technically satisfied. See [SECURITY_REQUIREMENT_GAP.md](SECURITY_REQUIREMENT_GAP.md).
 
 ## Final documentation — SRS, SAD, STP
