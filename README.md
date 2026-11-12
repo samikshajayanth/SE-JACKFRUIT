@@ -2,7 +2,6 @@
 
 StudentRMS is a modular C11 console application for managing student academic records. It supports administrator authentication, validated record management, search and sorting, automatic percentage/CGPA calculation, persistent storage, rank-list generation, report export, and audit logging.
 
-This project was developed by Team 4 for Software Engineering (UE24CS341A), Semester 5, PES University.
 
 ## Features
 
