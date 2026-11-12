@@ -40,4 +40,4 @@ The STP's TC-SEC-01 says credentials must not be embedded. Replace this with the
 
 ## PDF replacement status
 
-The repository's Markdown addenda now contain the missing material, but the existing PDF binaries have not been regenerated or replaced. The final submission should be one consistent PDF set with corrected SRNs, updated SRS requirements/objectives/data model, completed SAD/STP sections, and real approval signatures only.
+Corrected PDF copies have now been generated from the supplied PDFs: StudentRMS_Deliverable1_Corrected.pdf, StudentRMS_Deliverable2_Corrected.pdf, and StudentRMS_Final_Corrected.pdf. The copies correct the SRNs and C11 technology text, append the SRS/SAD/STP completion material, and preserve the existing diagrams. They are available in the current ChatGPT conversation as downloadable files. The tracked PDF binaries in docs/deliverables/ have not yet been replaced; upload the corrected copies before treating the repository's PDF set as final. Real approval signatures remain pending.
