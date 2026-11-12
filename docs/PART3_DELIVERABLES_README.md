@@ -1,25 +1,29 @@
 # Part 3 Deliverables — StudentRMS
 
-This folder contains the updated test-case document, execution instructions, traceability matrix, and four reports requested in Software Engineering Mini-Project Deliverables Part 3.
+This folder indexes the Part 3 test-case document, execution instructions, traceability matrix, and verification reports.
 
-| Deliverable | File | Status |
+| Deliverable | File | Current status |
 |---|---|---|
-| Updated Test Case Document | `TEST_CASE_DOCUMENT_PART3.md` | Updated for Sprint 1 + Sprint 2; includes 34 new robustness assertions |
-| Test Case Traceability | `PART3_TEST_CASE_TRACEABILITY.csv` | Updated with requirements, test levels, automation, and execution status |
-| Unit Test Report | `UNIT_TEST_REPORT.md` | **PASS:** 102/102 assertions across four test executables |
-| System Validation Report | `SYSTEM_VALIDATION_REPORT.md` | CI build/smoke/regression checks passed; interactive console and Windows checks remain pending |
-| Code Coverage Report | `CODE_COVERAGE_REPORT.md` | **77.67% line coverage** (240/309 executable lines) |
-| Branch Coverage Report | `BRANCH_COVERAGE_REPORT.md` | **62.70% branch-outcome coverage** (200/319 branch outcomes taken at least once) |
-| Test Execution Guide | `TEST_EXECUTION_GUIDE.md` | Standard, gcov, manual system-validation, and evidence-capture steps |
+| Updated test case document | \`TEST_CASE_DOCUMENT_PART3.md\` | Updated for Sprint 1 and Sprint 2, including robustness assertions |
+| Test case traceability | \`PART3_TEST_CASE_TRACEABILITY.csv\` | CSV structure repaired; includes interactive acceptance evidence and explicit SEC-001 gap |
+| Unit test report | \`UNIT_TEST_REPORT.md\` | Historical Part 3 run: 102/102 assertions passed |
+| System validation report | \`SYSTEM_VALIDATION_REPORT.md\` | Reconciled with later Windows and interactive acceptance evidence |
+| Code coverage report | \`CODE_COVERAGE_REPORT.md\` | Historical measurement: 77.67% line coverage (240/309 executable lines) |
+| Branch coverage report | \`BRANCH_COVERAGE_REPORT.md\` | Historical measurement: 62.70% branch-outcome coverage (200/319 outcomes) |
+| Test execution guide | \`TEST_EXECUTION_GUIDE.md\` | Linux, Windows, coverage, and manual validation instructions |
 
-## Part 3 CI evidence
+## Verification evidence
 
-Workflow run [41163252707 — StudentRMS Part 3 Verification](https://github.com/samikshajayanth/SE-JACKFRUIT/actions/runs/41163252707) passed the Linux build, application restart smoke test, all four unit/regression executables, performance benchmark, instrumented coverage run, and gcov artifact upload.
+- [Sprint 2 release verification](SPRINT2_RELEASE_VERIFICATION.md) records native Windows/MinGW verification, interactive update/delete acceptance, mutation persistence after restart, report export inspection, and CI results.
+- [Part 3 GitHub Actions run 41163252707](https://github.com/samikshajayanth/SE-JACKFRUIT/actions/runs/41163252707) is the historical 31 October Part 3 test/coverage run.
+- [Sprint 2 Part 3 verification run 43163536379](https://github.com/samikshajayanth/SE-JACKFRUIT/actions/runs/43163536379) records the later release verification.
+- The 1,000-record benchmark was 0.0294 seconds in the historical Linux Part 3 run and 0.0550 seconds in the documented native Windows run, both within the 2.0000-second target.
 
-The 1,000-record benchmark completed in 0.0294 seconds against the 2.0000-second limit. The gcov artifact from this run contains annotated source coverage files and instrumented build data.
+## Remaining review items
 
-## Remaining work for the assignment window (2–6 November 2026)
+1. Final team review and release-freeze sign-off remain pending in GitHub issue #32.
+2. SEC-001 is not met by the current educational implementation because \`admin/admin123\` is compiled into \`src/auth.c\`. See [Security Requirement Gap](SECURITY_REQUIREMENT_GAP.md); do not report this requirement as passed.
+3. Interactive invalid-login walkthrough and menu-based audit-log inspection are not separately recorded in the release verification matrix.
+4. Coverage values above are historical measurements tied to their stated workflow/toolchain. Re-run coverage after any source-code change before presenting them as current results.
 
-Complete the interactive console checks listed in `SYSTEM_VALIDATION_REPORT.md`: especially delete cancellation (`N`), delete confirmation (`Y`), update and mutation persistence across restart, report-file inspection, audit-log viewing, and the Windows/MinGW build. Capture terminal screenshots or video, and update the manual-pending rows only after observing the results.
-
-Optional Sprint 3 should be recorded only if actual development spillover remains; testing and documentation alone should not be mislabeled as Sprint 3 development.
+Do not describe unrecorded manual checks as passed. The evidence matrix is authoritative for each scenario's status.
