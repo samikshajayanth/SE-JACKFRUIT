@@ -7,7 +7,7 @@
 
 ## 1. Purpose and scope
 
-This document updates the original Sprint 1 cases and adds Sprint 2 regression coverage for record update/delete, versioned binary persistence, restart restoration, and report export. The test scope includes module-level functions, integration between modules, startup/restart behavior, and performance. Console confirmation prompts are system-level checks and are marked manual unless automated terminal interaction is recorded.
+This document updates the original Sprint 1 cases and adds Sprint 2 regression coverage for record update/delete, versioned binary persistence, restart restoration, and report export. The test scope includes module-level functions, integration between modules, startup/restart behavior, and performance. Console confirmation prompts are system-level checks. Delete confirmation/cancellation, update, restart persistence and report inspection have subsequent interactive evidence in `SPRINT2_RELEASE_VERIFICATION.md`.
 
 ## 2. Test environment
 
@@ -44,11 +44,11 @@ This document updates the original Sprint 1 cases and adds Sprint 2 regression c
 | TC-UPD-03 | Update / FR-005 | Update using a mark above 100 | Rejected; original record unchanged | Unit |
 | TC-UPD-04 | Update / FR-005 | Update an unknown roll number | Not-found result returned | Unit + system |
 | TC-DEL-01 | Delete / FR-006 | Delete an existing roll number | Record removed; count decremented; later records compacted | Unit + system |
-| TC-DEL-02 | Delete / FR-006 | At console prompt choose `N` or any non-`y` response | Cancellation message; record remains | Manual system |
+| TC-DEL-02 | Delete / FR-006 | At console prompt choose `N` or any non-`y` response | Cancellation message; record remains | Interactive verified — INT-DEL-01 |
 | TC-DEL-03 | Delete / FR-006 | Delete an unknown roll number | Not-found result; no mutation | Unit + system |
 | TC-PERSIST-01 | Storage / FR-010 | Save then load a valid data file | Same count and record data restored | Unit + integration |
 | TC-PERSIST-02 | Storage / NFR-002 | Start with no `students.dat` | Initial records seeded and persisted | System / CI smoke |
-| TC-PERSIST-03 | Storage / NFR-002 | Restart after a persisted change | Updated state is loaded; no duplicate reseeding | System / CI smoke |
+| TC-PERSIST-03 | Storage / NFR-002 | Restart after a persisted change | Updated state is loaded; no duplicate reseeding | CI smoke + interactive verified — INT-PERSIST-01 |
 | TC-REL-01 | Reliability / NFR-002 | Corrupt storage header or checksum | Load rejected as corrupt; existing file not silently overwritten | Unit + system |
 | TC-EXPORT-01 | Report / FR-011 | Export a non-empty student list | `reports.txt` contains full list and CGPA-descending rank list | Unit + system |
 | TC-EXPORT-02 | Report | Pass a null path or invalid count | Parameter error returned | Unit |
@@ -59,10 +59,11 @@ This document updates the original Sprint 1 cases and adds Sprint 2 regression c
 
 - **Automated:** test case is executed by a committed test executable or CI job.
 - **CI verified:** latest recorded GitHub Actions run passed the relevant workflow step.
-- **Manual pending:** requires interactive terminal input or human observation not captured by the automated harness.
+- **Interactive verified:** manually exercised and recorded in `SPRINT2_RELEASE_VERIFICATION.md`.
+- **Manual pending:** requires interactive terminal input or human observation not yet captured by the automated harness or release evidence.
 - **Not measured:** no trustworthy runtime/coverage value has been collected for the current candidate.
 
-The CI run on `main` dated 27 October 2026 passed compile-all, first-launch and restart-persistence smoke test, integrated unit suite, Sprint 2 regression suite, and 1,000-record performance benchmark. See [Build & Verify run](https://github.com/samikshajayanth/SE-JACKFRUIT/actions/runs/40484833650). This does not itself verify manual delete cancellation or Windows/MinGW execution.
+The CI run on `main` dated 27 October 2026 passed compile-all, first-launch and restart-persistence smoke test, integrated unit suite, Sprint 2 regression suite, and 1,000-record performance benchmark. See [Build & Verify run](https://github.com/samikshajayanth/SE-JACKFRUIT/actions/runs/40484833650). Later native Windows/MinGW and interactive acceptance evidence is recorded in `SPRINT2_RELEASE_VERIFICATION.md`.
 
 ## 5. Test execution procedure
 
