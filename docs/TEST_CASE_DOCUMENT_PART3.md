@@ -74,10 +74,7 @@ The CI run on `main` dated 27 October 2026 passed compile-all, first-launch and 
 ```bash
 make clean
 make all
-./test_suite
-./test_search_list
-./test_sprint2
-./test_perf
+make test
 ```
 
-The coverage build is described in `TEST_EXECUTION_GUIDE.md`. Run the suite in a disposable working directory because Sprint 2 tests create and remove temporary data files.
+The `make test` target runs all five suites, including `test_part3_unit`. The coverage build is described in `TEST_EXECUTION_GUIDE.md`. Run the suite in a disposable working directory because Sprint 2 tests create and remove temporary data files.
