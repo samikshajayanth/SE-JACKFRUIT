@@ -4,13 +4,13 @@
 #include "search_list.h"
 
 static Student records[10] = {
-    {"PES1UG24CS414", "Samiksha Jayanth", "CSE", 5, {85, 90, 88, 92, 84, 89}, 88.0f, 9.2f},
-    {"PES1UG24CS381", "Rohan M",          "CSE", 5, {92, 95, 90, 94, 91, 96}, 93.0f, 9.6f},
-    {"PES1UG24CS404", "Saksham Bajpayi",  "CSE", 5, {78, 82, 80, 85, 79, 81}, 80.8f, 8.4f},
-    {"PES1UG24CS372", "Riddhi Mundada",   "CSE", 5, {88, 89, 91, 87, 90, 92}, 89.5f, 9.3f},
-    {"PES1UG24CS101", "Aarav Sharma",     "ECE", 5, {75, 80, 82, 79, 81, 78}, 79.1f, 8.1f},
-    {"PES1UG24CS102", "Diya Patel",       "AIML", 5, {90, 91, 93, 89, 94, 92}, 91.5f, 9.5f},
-    {"PES1UG24CS103", "Karan Rao",        "CSE", 5, {70, 72, 74, 71, 73, 75}, 72.5f, 7.5f}
+    {"DEMO2026CS001", "Amara Shah", "CSE", 5, {85, 90, 88, 92, 84, 89}, 88.0f, 9.2f},
+    {"DEMO2026CS002", "Kabir Mehta",          "CSE", 5, {92, 95, 90, 94, 91, 96}, 93.0f, 9.6f},
+    {"DEMO2026CS003", "Mira Nair",  "CSE", 5, {78, 82, 80, 85, 79, 81}, 80.8f, 8.4f},
+    {"DEMO2026CS004", "Dev Iyer",   "CSE", 5, {88, 89, 91, 87, 90, 92}, 89.5f, 9.3f},
+    {"DEMO2026CS005", "Ishaan Rao",     "ECE", 5, {75, 80, 82, 79, 81, 78}, 79.1f, 8.1f},
+    {"DEMO2026CS006", "Anaya Iyer",       "AIML", 5, {90, 91, 93, 89, 94, 92}, 91.5f, 9.5f},
+    {"DEMO2026CS007", "Neel Das",        "CSE", 5, {70, 72, 74, 71, 73, 75}, 72.5f, 7.5f}
 };
 static int record_count = 7;
 
@@ -65,7 +65,7 @@ int main() {
     while (1) {
         printf("\n============================================================\n");
         printf("    StudentRMS - Module WP4 (Record Search & Listing)       \n");
-        printf("    Lead Developer: Rohan M (PES1UG24CS381) - Member 2     \n");
+        printf("    Software Engineering Team 4     \n");
         printf("    Sprint 1 Working Product Demo                          \n");
         printf("============================================================\n");
         printf("  1. View All Current Records\n");
