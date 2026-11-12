@@ -186,6 +186,10 @@ build.bat                Windows/MinGW build script
 ## Further documentation
 
 - [`docs/TEST_EXECUTION_GUIDE.md`](docs/TEST_EXECUTION_GUIDE.md) — build, test, coverage, and manual validation commands
+- [`docs/STP_COMPLETION_ADDENDUM.md`](docs/STP_COMPLETION_ADDENDUM.md) — detailed test-plan sections and execution responsibilities
+- [`docs/SAD_INTERFACE_DESIGN_ADDENDUM.md`](docs/SAD_INTERFACE_DESIGN_ADDENDUM.md) — module responsibilities, interfaces, error contracts, and traceability
+- [`docs/SECURITY_REQUIREMENT_GAP.md`](docs/SECURITY_REQUIREMENT_GAP.md) — explicit status and remediation plan for SRS SEC-001
+- [`docs/SYSTEM_VALIDATION_REPORT.md`](docs/SYSTEM_VALIDATION_REPORT.md) — reconciled validation results and remaining limitations
 - [`docs/PART3_DELIVERABLES_README.md`](docs/PART3_DELIVERABLES_README.md) — test reports and Part 3 evidence index
 - [`docs/SPRINT2_DEMO_CHECKLIST.md`](docs/SPRINT2_DEMO_CHECKLIST.md) — reproducible interactive demo flow
 - [`BACKLOG_SPRINT_BOARD.md`](docs/planning/BACKLOG_SPRINT_BOARD.md) — requirements, ownership, and sprint status
