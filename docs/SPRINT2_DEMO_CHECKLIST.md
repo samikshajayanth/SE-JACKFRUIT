@@ -10,4 +10,4 @@ Run from the repository directory after `cmd /c build.bat`. Use the application'
 6. Select **Logout and Exit**, start the application again from the same directory, and show that the update remains and the deleted record is absent.
 7. Show the actual `build.bat` and regression-test output.
 
-Observed during issue #32 verification: update, cancellation, confirmed deletion, restart persistence, report generation, and descending rank output all passed. Video recording remains a manual action.
+Observed during issue #32 verification: update, cancellation, confirmed deletion, restart persistence, report generation, and descending rank output all passed. The working-product video has been recorded and attached to [GitHub issue #32](https://github.com/samikshajayanth/SE-JACKFRUIT/issues/32).
