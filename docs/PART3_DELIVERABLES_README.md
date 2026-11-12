@@ -19,6 +19,10 @@ This folder indexes the Part 3 test-case document, execution instructions, trace
 - [Sprint 2 Part 3 verification run 43163536379](https://github.com/samikshajayanth/SE-JACKFRUIT/actions/runs/43163536379) records the later release verification.
 - The 1,000-record benchmark was 0.0294 seconds in the historical Linux Part 3 run and 0.0550 seconds in the documented native Windows run, both within the 2.0000-second target.
 
+## Corrected PDF copies
+
+Corrected copies of the Synopsis, SRS, and combined final documentation have been generated in the current ChatGPT conversation. They include corrected SRNs/technology labels and appended SRS, SAD, and STP completion material. The binary files tracked in docs/deliverables/ still need to be replaced with those corrected copies before release.
+
 ## Remaining review items
 
 1. Final team review and release-freeze sign-off remain pending in GitHub issue #32.
