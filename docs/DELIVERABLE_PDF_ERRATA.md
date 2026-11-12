@@ -1,35 +1,43 @@
 # Deliverable PDF Errata and Finalization Notes
 
-This file records corrections identified during the repository/document audit. It does not replace the submitted PDFs in `docs/deliverables/`.
+This audit was performed against the actual PDFs supplied for review. These notes do not replace the PDF binaries currently stored in docs/deliverables/.
 
-## Deliverable 1 — Synopsis
+## Deliverable 1 — Synopsis (3 pages)
 
-- Correct the Member 3 / Saksham Bajpayi SRN: Deliverable 1 currently reads `PES1UG24CS414`, but the roster and Deliverable 2 identify Saksham as `PES1UG24CS404`.
-- The synopsis technology field says `C / C++`; the implemented repository is C11. Change this to C11 (or state C if the course expects the precise implementation language).
-- The Synopsis Submission Checklist on page 3 has every checkbox blank. Mark only the items that are actually evidenced in the submitted synopsis.
-- Recheck the ownership matrix against the team roster before exporting the corrected PDF.
+1. Correct Member 3 / Saksham Bajpayi's SRN. It is printed as PES1UG24CS414; the correct SRN is PES1UG24CS404. Member 1 already uses PES1UG24CS414.
+2. Change the technology entry from C / C++ to C11 (or C, if the course template asks only for the implementation language). The repository is a C11 project.
+3. The Synopsis Submission Checklist on page 3 has every checkbox blank. Mark the items that are actually evidenced by the synopsis; do not leave the completed items unchecked.
+4. Add a concise Agile justification: short iterations, independently owned feature slices, frequent integration/testing feedback, and sprint reviews reduce integration risk for the four-person team.
+5. The synopsis proposes six sprints, while the actual repository documents two sprints (19–23 Oct and 26–30 Oct 2026). State clearly that six sprints were the initial proposal and two were the executed/revised schedule, if that reflects the team's actual planning.
 
-## Deliverable 2 — SRS
+## Deliverable 2 — SRS (7 pages)
 
-- Correct the Member 4 / Riddhi Mundada SRN: Deliverable 2 currently reads `PES12IG24CS372`; the correct format is `PES1UG24CS372`.
-- The SRS currently lists FR-001 through FR-012. Incorporate [SRS_COMPLETION_ADDENDUM.md](SRS_COMPLETION_ADDENDUM.md) for FR-013 through FR-015 and the two explicit security objectives required by the supplied template.
-- Appendix B currently lists `admin_username` and `admin_password_hash` as credential fields. These are not fields in the actual `Student` structure. Remove them from the student record layout and describe the approved demonstration credential separately.
-- The initial RTM in Appendix C is intentionally sparse, but the final report/RTM must map each implemented requirement to architecture, design, source module, and test case.
-- The original SEC-001 wording conflicts with the accepted compiled demonstration credential. Record the accepted academic-demo deviation consistently; do not claim the original separate-file requirement is technically satisfied.
+1. Correct Member 4 / Riddhi Mundada's SRN. It is printed as PES12IG24CS372; the correct SRN is PES1UG24CS372.
+2. The submitted SRS contains FR-001 through FR-012. The supplied SRS template requires at least 15 functional requirements. Incorporate SRS_COMPLETION_ADDENDUM.md for FR-013 through FR-015, which are already implemented functions: audit-log viewing, logout/session clearing, and three-attempt lockout.
+3. Add the two explicit security objectives SO-01 and SO-02 from SRS_COMPLETION_ADDENDUM.md. The PDF has five security requirements (SEC-001 through SEC-005), but no separate objectives table.
+4. Appendix B currently lists admin_username and admin_password_hash as fields in the student/credential layout. These are not fields in the actual Student structure. Remove them from the Student record layout and describe the compiled demo credential separately.
+5. The original SEC-001 wording requires a separate restricted-access credential file. The project owner accepts the compiled demo credential for this academic project. Record that as a scope deviation; do not claim the original wording is technically satisfied.
+6. The initial RTM in Appendix C is sparse. This is acceptable as an initial planning matrix, but the final report must map each implemented requirement to architecture, design, source module, and test case.
 
-## Deliverable 2 — Requirements package
+## Final documentation — SAD
 
-- Correct the Member 4 SRN to `PES1UG24CS372` wherever it appears. Also verify the Member 3 SRN remains `PES1UG24CS404`.
-- The SRS currently contains FR-001 through FR-012. Incorporate [SRS_COMPLETION_ADDENDUM.md](SRS_COMPLETION_ADDENDUM.md) to meet the 15-FR requirement, add two explicit security objectives, and correct the data model/credential-store description.
-- The project owner accepts the compiled demo credentials for this academic scope. Record this as a deviation from the original SEC-001 wording and revise the final SRS/report accordingly; do not describe the original separate-file requirement as technically satisfied. See [SECURITY_REQUIREMENT_GAP.md](SECURITY_REQUIREMENT_GAP.md).
+The component diagram, two sequence diagrams, high-level architecture, use-case diagram, and class diagram are present in the PDF. The following SAD headings are blank or only placeholders and need the content in SAD_INTERFACE_DESIGN_ADDENDUM.md incorporated:
 
-## Final documentation — SRS, SAD, STP
+- 3.1 Goals & Constraints
+- 3.2 Stakeholders & Concerns
+- 3.4 Component Descriptions
+- 3.7 Risks & Mitigations
+- 3.8 Traceability to Requirements
+- 4.3 API / Interface Design
 
-- Incorporate [STP_COMPLETION_ADDENDUM.md](STP_COMPLETION_ADDENDUM.md) into the Software Test Plan. In the submitted PDF, sections 6 (Test Environment), 7 (Test Schedule), 9 (Roles), 10 (Risks), 13 (Traceability), and 15 (Approvals) are headings without their required details; sections 3 and 4 also need their test-in/test-out lists included. The addendum supplies this content.
-- Incorporate [SAD_INTERFACE_DESIGN_ADDENDUM.md](SAD_INTERFACE_DESIGN_ADDENDUM.md) into the Software Architecture & Design section, including the previously empty architecture, stakeholder, component, risk, traceability and API sections.
-- Ensure the final PDF describes the accepted demonstration credential deviation consistently. The original SEC-001 wording is not technically satisfied, but a credentials-file implementation is not planned for this academic demo.
-- Complete approval names/signatures only with actual team/course-coordinator approval; do not fabricate signatures.
+The SAD also describes credentials.dat and a separate credential store, which do not exist in the current source. Replace that description with the accepted academic-demo credential decision.
+
+## Final documentation — STP
+
+The PDF contains the test approach, security validation bullet list, and test-case table. However, these sections are headings without substantive detail: 6 (Test Environment), 7 (Test Schedule), 9 (Roles and Responsibilities), 10 (Risks and Mitigation), 13 (Test Case Management and Traceability), and 15 (Approvals). Sections 3 (Features to be Tested) and 4 (Features Not to be Tested) also need explicit lists. Incorporate STP_COMPLETION_ADDENDUM.md.
+
+The STP's TC-SEC-01 says credentials must not be embedded. Replace this with the accepted demonstration-scope deviation and verify the remaining security controls (authorization, input validation, file handling, audit logging, and no passwords in logs).
 
 ## PDF replacement status
 
-The text documentation in the GitHub repository has been updated. The existing PDF deliverables are binary files and were not replaced by these Markdown edits. Regenerate corrected PDFs from the editable source document, review page breaks and diagrams, then upload the final PDFs to `docs/deliverables/`.
+The repository's Markdown addenda now contain the missing material, but the existing PDF binaries have not been regenerated or replaced. The final submission should be one consistent PDF set with corrected SRNs, updated SRS requirements/objectives/data model, completed SAD/STP sections, and real approval signatures only.
