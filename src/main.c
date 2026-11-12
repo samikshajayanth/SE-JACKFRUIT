@@ -74,6 +74,7 @@ static int persist_current_state(void) {
 static int prompt_student_details(Student* s) {
     if (!s) return 0;
     memset(s, 0, sizeof(*s));
+    discard_line(); /* Consume the newline left by the menu/roll-number scanf. */
     if (!read_text_field("Roll Number: ", s->roll_no, sizeof(s->roll_no))) return 0;
     if (!read_text_field("Full Name: ", s->name, sizeof(s->name))) return 0;
     if (!read_text_field("Department: ", s->department, sizeof(s->department))) return 0;
