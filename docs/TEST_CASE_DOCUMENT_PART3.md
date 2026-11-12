@@ -58,6 +58,7 @@ This document updates the original Sprint 1 cases and adds Sprint 2 regression c
 | TC-AUDIT-01 | Audit-log view / FR-013, SEC-005 | After login, select menu option 11 | Timestamped authentication events are displayed | CI smoke verified — run 43253003166 |
 | TC-LOGOUT-01 | Logout / FR-014 | Select menu option 12 after login | Session state is cleared and process exits | CI smoke verified — run 43253003166 |
 | TC-LOCKOUT-01 | Login lockout / FR-015 | Enter invalid credentials three times at startup | Application exits without displaying the main menu | CI smoke verified — run 43253003166 |
+| TC-INPUT-LENGTH-01 | Input validation / SEC-003 | Enter an overlong full name in Add Student | Input rejected; no record inserted and no truncated value accepted | PASS — CI smoke verified in run 43254584426 |
 
 ## 4. Traceability and status conventions
 
@@ -90,5 +91,3 @@ make test
 
 The `make test` target runs all five suites, including `test_part3_unit`. The coverage build is described in `TEST_EXECUTION_GUIDE.md`. Run the suite in a disposable working directory because Sprint 2 tests create and remove temporary data files.
 
-
-| TC-INPUT-LENGTH-01 | Input validation / SEC-003 | Enter an overlong full name in Add Student | Input rejected; no record inserted and no truncated value accepted | PASS — CI smoke verified in run 43254584426 |
