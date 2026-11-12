@@ -68,9 +68,9 @@ The application was launched from an isolated directory with the supported crede
 
 ## 4. Demonstration evidence
 
-A working-product demonstration video was recorded on macOS and attached to GitHub issue #32.
+A working-product demonstration video was recorded on macOS and attached to GitHub issue #32. It is now indexed in the demos folder for easier discovery.
 
-**[View StudentRMS demonstration video](https://github.com/user-attachments/assets/0cf1b03a-2c2c-46a7-88f4-6699646b99cc)**
+**[View StudentRMS demonstration video](demos/README.md)**
 
 The demonstration covers:
 - Application launch and authentication.
