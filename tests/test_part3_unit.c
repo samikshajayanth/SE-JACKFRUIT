@@ -51,9 +51,9 @@ int main(void) {
     auth_logout();
     CHECK(!auth_is_authenticated(), "TC-AUTH-03: logout clears session state");
 
-    students[0] = make_student("PES1UG24CS001", "Asha Rao", 80.0f);
-    students[1] = make_student("PES1UG24CS002", "Rohan M", 90.0f);
-    students[2] = make_student("PES1UG24CS003", "Mira Das", 70.0f);
+    students[0] = make_student("DEMO2026CS101", "Asha Rao", 80.0f);
+    students[1] = make_student("DEMO2026CS102", "Kabir Mehta", 90.0f);
+    students[2] = make_student("DEMO2026CS103", "Mira Das", 70.0f);
 
     CHECK(validate_student_fields(&students[0]), "TC-VAL-02: valid student fields are accepted");
     candidate = students[0];
