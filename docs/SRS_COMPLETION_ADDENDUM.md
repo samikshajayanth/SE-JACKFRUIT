@@ -39,9 +39,9 @@ Add the following mappings to the final RTM:
 
 | Requirement | Architecture/module | Design/interface | Test mapping |
 |---|---|---|---|
-| FR-013 | Authentication / Console UI | ui_view_audit_log() in src/main.c | Interactive audit-log inspection |
+| FR-013 | Authentication / Console UI | ui_view_audit_log() in src/main.c | CI smoke check of menu option 11 |
 | FR-014 | Authentication / Console UI | auth_logout(), auth_is_authenticated() | Logout/session reset unit and system tests |
-| FR-015 | Authentication / Console UI | Three-attempt startup loop in main() | Three invalid login attempts; verify lockout and no menu access |
+| FR-015 | Authentication / Console UI | Three-attempt startup loop in main() | CI smoke check verifies three invalid attempts exit before main menu |
 | SO-01 | Authentication / Console UI | Session gate in record-management handlers | SEC-002 authorization tests |
 | SO-02 | Validation / Storage / Authentication | Student validation, storage status handling, audit logging | SEC-003/004/005 tests |
 
