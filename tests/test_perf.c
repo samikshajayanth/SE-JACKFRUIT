@@ -10,11 +10,11 @@ static Student dataset[BENCHMARK_COUNT];
 
 /* Generate 1000 synthetic records */
 static void generate_benchmark_data() {
-    const char* first_names[] = {"Aarav", "Aditi", "Bhavya", "Chirag", "Divya", "Eshan", "Farhan", "Gauri", "Harsh", "Isha", "Karan", "Meera", "Neha", "Pranav", "Rohan", "Sanya", "Tarun", "Varun", "Yash", "Zoya"};
+    const char* first_names[] = {"Aarav", "Aditi", "Bhavya", "Chirag", "Divya", "Eshan", "Farhan", "Gauri", "Harsh", "Isha", "Karan", "Meera", "Neha", "Pranav", "Mira", "Sanya", "Tarun", "Varun", "Yash", "Zoya"};
     const char* last_names[] = {"Sharma", "Verma", "Patel", "Reddy", "Iyer", "Nair", "Rao", "Gupta", "Mehta", "Singh", "Joshi", "Bhat", "Deshmukh", "Kulkarni", "Menon"};
 
     for (int i = 0; i < BENCHMARK_COUNT; i++) {
-        snprintf(dataset[i].roll_no, MAX_ROLL_LEN, "PES1UG24CS%03d", i + 1);
+        snprintf(dataset[i].roll_no, MAX_ROLL_LEN, "DEMO2026CS%03d", i + 1);
         snprintf(dataset[i].name, MAX_NAME_LEN, "%s %s",
                  first_names[i % 20], last_names[(i * 7) % 15]);
         strncpy(dataset[i].department, "CSE", MAX_DEPT_LEN);
@@ -31,7 +31,7 @@ int main() {
     printf("============================================================\n");
     printf("  StudentRMS - NFR-001 Performance Benchmark (TC-PERF-01)   \n");
     printf("  Benchmark Target: 1000 records search & sort <= 2.0s      \n");
-    printf("  Owner: Rohan M (PES1UG24CS381)                            \n");
+    printf("  Benchmark data: 1000 synthetic student records                            \n");
     printf("============================================================\n\n");
 
     printf("Generating %d synthetic student records...\n", BENCHMARK_COUNT);
@@ -43,7 +43,7 @@ int main() {
     int roll_found = 0;
     for (int i = 0; i < BENCHMARK_COUNT; i++) {
         char target_roll[MAX_ROLL_LEN];
-        snprintf(target_roll, MAX_ROLL_LEN, "PES1UG24CS%03d", i + 1);
+        snprintf(target_roll, MAX_ROLL_LEN, "DEMO2026CS%03d", i + 1);
         if (search_by_roll_no(dataset, BENCHMARK_COUNT, target_roll, &result) == SEARCH_SUCCESS) {
             roll_found++;
         }
@@ -56,10 +56,10 @@ int main() {
     /* 2. Benchmark: Substring Name Search across all 1000 records */
     clock_t start_name = clock();
     Student matches[200];
-    int name_matches = search_by_name(dataset, BENCHMARK_COUNT, "Rohan", matches, 200);
+    int name_matches = search_by_name(dataset, BENCHMARK_COUNT, "Mira", matches, 200);
     clock_t end_name = clock();
     double time_name = (double)(end_name - start_name) / CLOCKS_PER_SEC;
-    printf("  [2] Substring Name Search    : %8.4f sec (Matches for 'Rohan': %d)\n",
+    printf("  [2] Substring Name Search    : %8.4f sec (Matches for 'Mira': %d)\n",
            time_name, name_matches);
 
     /* 3. Benchmark: Sort 1000 records by CGPA */

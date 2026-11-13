@@ -51,9 +51,9 @@ int main(void) {
     auth_logout();
     CHECK(!auth_is_authenticated(), "TC-AUTH-03: logout clears session state");
 
-    students[0] = make_student("PES1UG24CS001", "Asha Rao", 80.0f);
-    students[1] = make_student("PES1UG24CS002", "Rohan M", 90.0f);
-    students[2] = make_student("PES1UG24CS003", "Mira Das", 70.0f);
+    students[0] = make_student("DEMO2026CS101", "Asha Rao", 80.0f);
+    students[1] = make_student("DEMO2026CS102", "Kabir Mehta", 90.0f);
+    students[2] = make_student("DEMO2026CS103", "Mira Das", 70.0f);
 
     CHECK(validate_student_fields(&students[0]), "TC-VAL-02: valid student fields are accepted");
     candidate = students[0];
@@ -70,12 +70,16 @@ int main(void) {
           "TC-ADD-01: a valid student record can be inserted");
     CHECK(count == 1, "TC-ADD-01: record count increments once");
     CHECK(students[0].percentage == 80.0f, "TC-CGPA-01: percentage is derived from marks");
+    candidate = students[0];
+    (void)snprintf(candidate.roll_no, sizeof(candidate.roll_no), "%s", "demo2026cs101");
+    CHECK(add_student_record(students, &count, 3, &candidate) == MGMT_ERR_DUPLICATE,
+          "TC-ADD-02: duplicate roll number is rejected case insensitively");
     CHECK(add_student_record(students, &count, 3, &students[0]) == MGMT_ERR_DUPLICATE,
-          "TC-ADD-02: duplicate roll number is rejected");
+          "TC-ADD-02: exact duplicate roll number is rejected");
     CHECK(add_student_record(NULL, &count, 3, &students[0]) == MGMT_ERR_INVALID_FIELD,
           "TC-ADD-03: null student array is rejected safely");
 
-    CHECK(search_by_roll_no(students, count, "pes1ug24cs001", &result) == SEARCH_SUCCESS,
+    CHECK(search_by_roll_no(students, count, "demo2026cs101", &result) == SEARCH_SUCCESS,
           "TC-SEARCH-01: roll search is case insensitive");
     CHECK(search_by_roll_no(students, count, "UNKNOWN", &result) == SEARCH_NOT_FOUND,
           "TC-SEARCH-01: unknown roll returns not found");

@@ -52,7 +52,8 @@ Run the application in an isolated temporary working directory. Do not use or ov
 7. Confirm deletion with `Y` and verify the record is removed.
 8. Exit and restart; verify the updated record remains and the deleted record is absent.
 9. Export reports and inspect both the complete student list and descending rank list.
-10. Inspect `login.log` for timestamped authentication events.
+10. Inspect `login.log` for timestamped authentication events and confirm no password or credential material appears.
+11. For storage recovery, use the automated Sprint 2 cases that simulate an interrupted save (`.bak` without a primary file) and a corrupt primary with a valid backup.
 
 Record tester, date/time, environment, outcome, and evidence filename in `SYSTEM_VALIDATION_REPORT.md`. A menu option or an automated unit test alone is not evidence of a completed interactive walkthrough.
 

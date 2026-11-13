@@ -37,7 +37,7 @@ static int ci_strstr(const char* haystack, const char* needle) {
 
 /* FR-004: Search by Roll Number */
 int search_by_roll_no(const Student* students, int count, const char* roll_no, Student* result) {
-    if (!students || count <= 0 || !roll_no || !result) {
+    if (!students || count <= 0 || count > MAX_RECORDS || !roll_no || !result) {
         return SEARCH_ERR_PARAM;
     }
     for (int i = 0; i < count; i++) {
@@ -51,7 +51,7 @@ int search_by_roll_no(const Student* students, int count, const char* roll_no, S
 
 /* FR-004: Search by Name (Substring, case-insensitive) */
 int search_by_name(const Student* students, int count, const char* query, Student* results, int max_results) {
-    if (!students || count <= 0 || !query || !results || max_results <= 0) {
+    if (!students || count <= 0 || count > MAX_RECORDS || !query || !results || max_results <= 0) {
         return SEARCH_ERR_PARAM;
     }
     int found = 0;
@@ -96,7 +96,7 @@ static int cmp_cgpa_desc(const void* a, const void* b) {
 
 /* FR-007: Sort Students using qsort */
 int sort_students(Student* students, int count, SortOrder order) {
-    if (!students || count <= 0) {
+    if (!students || count <= 0 || count > MAX_RECORDS) {
         return -1;
     }
     switch (order) {

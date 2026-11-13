@@ -21,6 +21,8 @@ The accepted demo credential choice does not waive the other security checks:
 - SEC-004: file I/O failures are handled without corrupting stored records.
 - SEC-005: failed login attempts are timestamped in the local audit log.
 - Passwords or credential material must not be written into logs.
+- Interactive password entry is now read without terminal echo on Windows and POSIX terminals; non-interactive CI input uses the existing bounded reader.
+- First-run and legacy demonstration datasets use synthetic identifiers/names/marks rather than team academic records.
 
 ## Operational limitation
 

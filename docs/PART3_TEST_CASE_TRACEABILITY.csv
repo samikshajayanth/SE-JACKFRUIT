@@ -44,3 +44,7 @@ TC-LOCKOUT-01,Three-attempt lockout,FR-015,Interactive system,Startup login flow
 SO-01,Access-control objective,FR-001;SEC-002,Security,Authorization tests,Unauthenticated record operations denied,Automated coverage in test suites
 SO-02,Record integrity and auditability objective,FR-012;SEC-003;SEC-004;SEC-005,Security,Negative/storage/audit tests,Invalid data rejected; file errors handled; timestamped events recorded,Automated tests present; interactive audit-log view not separately recorded
 TC-INPUT-LENGTH-01,Reject empty or overlong text fields,SEC-003,Interactive system,Enter a name longer than MAX_NAME_LEN during Add,Application rejects the field without truncation or record insertion,PASS — CI smoke verified in run 43254584426
+TC-ROLL-04,Case-insensitive roll identity,FR-003;FR-005;FR-006,Unit,test_sprint2;test_part3_unit,CRUD and duplicate checks treat case-only variants as the same identifier,PR CI pending
+TC-PERSIST-06,Recover missing primary from backup,FR-010;NFR-002,Regression,test_sprint2,Missing primary is restored from a valid .bak file after simulated interrupted save,PR CI pending
+TC-REL-02,Recover corrupt primary from valid backup,SEC-004;NFR-002,Regression,test_sprint2,Valid .bak is promoted and corrupt primary is quarantined/removed,PR CI pending
+TC-INPUT-PASSWORD-01,Hide interactive password input,SEC-005,Manual,Interactive terminal,Password characters are not echoed while typing,Manual verification pending

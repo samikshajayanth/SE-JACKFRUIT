@@ -49,20 +49,20 @@ static void test_mgmt_module(void) {
     int count = 0;
 
     /* TC-ADD-01: Add valid student */
-    Student s1 = {"PES1UG24CS414", "Samiksha Jayanth", "CSE", 5, {90, 90, 90, 90, 90, 90}, 0, 0};
+    Student s1 = {"DEMO2026CS001", "Amara Shah", "CSE", 5, {90, 90, 90, 90, 90, 90}, 0, 0};
     int res = add_student_record(list, &count, 10, &s1);
     TEST_ASSERT(res == MGMT_SUCCESS, "TC-ADD-01: Valid student added successfully");
     TEST_ASSERT(count == 1, "Count incremented to 1");
     TEST_ASSERT(list[0].percentage == 90.0f, "Auto percentage computed correctly");
 
     /* TC-ADD-02: Duplicate roll number */
-    Student s_dup = {"PES1UG24CS414", "Duplicate Samiksha", "CSE", 5, {80, 80, 80, 80, 80, 80}, 0, 0};
+    Student s_dup = {"DEMO2026CS001", "Duplicate Samiksha", "CSE", 5, {80, 80, 80, 80, 80, 80}, 0, 0};
     res = add_student_record(list, &count, 10, &s_dup);
     TEST_ASSERT(res == MGMT_ERR_DUPLICATE, "TC-ADD-02: Duplicate roll number rejected");
     TEST_ASSERT(count == 1, "Count remained 1 after duplicate rejection");
 
     /* TC-VAL-01: Invalid marks (< 0 or > 100) */
-    Student s_bad = {"PES1UG24CS999", "Bad Marks", "CSE", 5, {105, 90, 90, 90, 90, 90}, 0, 0};
+    Student s_bad = {"DEMO2026CS005", "Bad Marks", "CSE", 5, {105, 90, 90, 90, 90, 90}, 0, 0};
     res = add_student_record(list, &count, 10, &s_bad);
     TEST_ASSERT(res == MGMT_ERR_INVALID_FIELD, "TC-VAL-01: Subject marks > 100 rejected");
 
@@ -93,19 +93,19 @@ static void test_search_list_module(void) {
     printf("\n[SUITE 4] Running Search & Listing Tests (TC-SEARCH-01, TC-SEARCH-02, TC-LIST-01)...\n");
 
     Student sample[4] = {
-        {"PES1UG24CS414", "Samiksha Jayanth", "CSE", 5, {88, 92, 90, 89, 94, 91}, 90.67f, 9.54f},
-        {"PES1UG24CS381", "Rohan M",          "CSE", 5, {95, 96, 94, 98, 92, 97}, 95.33f, 10.00f},
-        {"PES1UG24CS404", "Saksham Bajpayi",  "CSE", 5, {82, 85, 80, 84, 86, 83}, 83.33f, 8.77f},
-        {"PES1UG24CS372", "Riddhi Mundada",   "CSE", 5, {91, 93, 89, 92, 90, 94}, 91.50f, 9.63f}
+        {"DEMO2026CS001", "Amara Shah", "CSE", 5, {88, 92, 90, 89, 94, 91}, 90.67f, 9.54f},
+        {"DEMO2026CS002", "Kabir Mehta",          "CSE", 5, {95, 96, 94, 98, 92, 97}, 95.33f, 10.00f},
+        {"DEMO2026CS003", "Mira Nair",  "CSE", 5, {82, 85, 80, 84, 86, 83}, 83.33f, 8.77f},
+        {"DEMO2026CS004", "Dev Iyer",   "CSE", 5, {91, 93, 89, 92, 90, 94}, 91.50f, 9.63f}
     };
 
     /* TC-SEARCH-01: Search by roll number */
     Student res;
-    int status = search_by_roll_no(sample, 4, "PES1UG24CS381", &res);
+    int status = search_by_roll_no(sample, 4, "DEMO2026CS002", &res);
     TEST_ASSERT(status == SEARCH_SUCCESS, "TC-SEARCH-01: Exact roll number found");
-    TEST_ASSERT(strcmp(res.name, "Rohan M") == 0, "Matched student name is Rohan M");
+    TEST_ASSERT(strcmp(res.name, "Kabir Mehta") == 0, "Matched student name is Kabir Mehta");
 
-    status = search_by_roll_no(sample, 4, "pes1ug24cs381", &res);
+    status = search_by_roll_no(sample, 4, "demo2026cs002", &res);
     TEST_ASSERT(status == SEARCH_SUCCESS, "TC-SEARCH-01: Case-insensitive roll search passed");
 
     status = search_by_roll_no(sample, 4, "UNKNOWN_ROLL", &res);
@@ -113,25 +113,25 @@ static void test_search_list_module(void) {
 
     /* TC-SEARCH-02: Substring search by name */
     Student matches[4];
-    int count = search_by_name(sample, 4, "rohan", matches, 4);
-    TEST_ASSERT(count == 1, "TC-SEARCH-02: Substring 'rohan' finds 1 record");
-    TEST_ASSERT(strcmp(matches[0].roll_no, "PES1UG24CS381") == 0, "Matched roll matches Rohan");
+    int count = search_by_name(sample, 4, "kabir", matches, 4);
+    TEST_ASSERT(count == 1, "TC-SEARCH-02: Substring 'kabir' finds 1 record");
+    TEST_ASSERT(strcmp(matches[0].roll_no, "DEMO2026CS002") == 0, "Matched roll matches Kabir");
 
-    count = search_by_name(sample, 4, "sha", matches, 4);
-    TEST_ASSERT(count == 2, "TC-SEARCH-02: Substring 'sha' finds Samiksha & Saksham");
+    count = search_by_name(sample, 4, "ra", matches, 4);
+    TEST_ASSERT(count == 2, "TC-SEARCH-02: Substring 'ra' finds Amara & Mira");
 
     /* TC-LIST-01: Sort by CGPA Descending */
     Student sort_arr[4];
     memcpy(sort_arr, sample, sizeof(sample));
     int s_res = sort_students(sort_arr, 4, SORT_BY_CGPA_DESC);
     TEST_ASSERT(s_res == 0, "TC-LIST-01: sort_students CGPA_DESC execution succeeded");
-    TEST_ASSERT(strcmp(sort_arr[0].roll_no, "PES1UG24CS381") == 0, "Highest CGPA is Rohan M (Index 0)");
-    TEST_ASSERT(strcmp(sort_arr[3].roll_no, "PES1UG24CS404") == 0, "Lowest CGPA is Saksham Bajpayi (Index 3)");
+    TEST_ASSERT(strcmp(sort_arr[0].roll_no, "DEMO2026CS002") == 0, "Highest CGPA is Kabir Mehta (Index 0)");
+    TEST_ASSERT(strcmp(sort_arr[3].roll_no, "DEMO2026CS003") == 0, "Lowest CGPA is Mira Nair (Index 3)");
 
     /* TC-LIST-01: Sort by Name Ascending */
     s_res = sort_students(sort_arr, 4, SORT_BY_NAME_ASC);
     TEST_ASSERT(s_res == 0, "TC-LIST-01: sort_students NAME_ASC succeeded");
-    TEST_ASSERT(strcmp(sort_arr[0].name, "Riddhi Mundada") == 0, "First alphabetically is Riddhi Mundada");
+    TEST_ASSERT(strcmp(sort_arr[0].name, "Amara Shah") == 0, "First alphabetically is Amara Shah");
 }
 
 int main(void) {
