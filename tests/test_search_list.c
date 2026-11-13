@@ -47,6 +47,9 @@ void test_search_by_roll_no() {
     /* 4. Invalid parameter handling */
     status = search_by_roll_no(NULL, 5, "DEMO2026CS002", &result);
     TEST_ASSERT(status == SEARCH_ERR_PARAM, "NULL pointer returns error code");
+
+    status = search_by_roll_no(sample_students, MAX_RECORDS + 1, "DEMO2026CS002", &result);
+    TEST_ASSERT(status == SEARCH_ERR_PARAM, "Oversized record count is rejected");
 }
 
 void test_search_by_name() {
@@ -74,6 +77,9 @@ void test_search_by_name() {
     /* 4. Partial substring (middle of name) */
     count = search_by_name(sample_students, 5, "Nair", results, 5);
     TEST_ASSERT(count == 1, "Substring 'Nair' returns Mira Nair");
+
+    count = search_by_name(sample_students, MAX_RECORDS + 1, "Kabir", results, 5);
+    TEST_ASSERT(count == SEARCH_ERR_PARAM, "Name search rejects oversized record count");
 }
 
 void test_sort_students() {
@@ -82,7 +88,11 @@ void test_sort_students() {
 
     /* 1. Sort by CGPA Descending (Rank List) */
     memcpy(arr, sample_students, sizeof(sample_students));
-    int res = sort_students(arr, 5, SORT_BY_CGPA_DESC);
+    int res = sort_students(sample_students, MAX_RECORDS + 1, SORT_BY_NAME_ASC);
+    TEST_ASSERT(res == -1, "Sort rejects oversized record count");
+
+    memcpy(arr, sample_students, sizeof(sample_students));
+    res = sort_students(arr, 5, SORT_BY_CGPA_DESC);
     TEST_ASSERT(res == 0, "sort_students CGPA_DESC execution succeeded");
     TEST_ASSERT(arr[0].cgpa >= arr[1].cgpa &&
                 arr[1].cgpa >= arr[2].cgpa &&

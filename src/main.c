@@ -406,7 +406,13 @@ int main(void) {
         printf(" 11. View Authentication Audit Log\n");
         printf(" 12. Logout and Exit\n");
         printf("============================================================\nEnter option [1-12]: ");
-        if (scanf("%d", &choice) != 1) {
+        int input_status = scanf("%d", &choice);
+        if (input_status == EOF) {
+            auth_logout();
+            printf("\n[INFO] Input stream closed. Exiting StudentRMS.\n");
+            return 0;
+        }
+        if (input_status != 1) {
             discard_line();
             printf("[ERROR] Enter a menu number from 1 to 12.\n");
             continue;
